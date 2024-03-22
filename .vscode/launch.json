@@ -1,16 +1,54 @@
 {
-    "version": "0.2.0",
+    "version": "2.0.0",
     "configurations": [
         {
-            "name": "Run Godot Run",
+            "name": "Lecim na Szczecim",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "C:/Godot/Godot_v4.2.1-stable_mono_win64.exe",
-            "args": [],
+            "program": "${env:Godot4Mono}",
             "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
             "stopAtEntry": false,
-            
+            "args": [
+                "--path",
+                "${workspaceRoot}"
+            ]
+        },
+        {
+            "name": "Launch mainScene",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${env:Godot4Mono}",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "args": [
+                "--path",
+                "${workspaceRoot}",
+                "${command:godot.csharp.getLaunchScene}"
+            ]
+        },
+        {
+            "name": "Launch Editor",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${env:Godot4Mono}",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "args": [
+                "--path",
+                "${workspaceRoot}",
+                "--editor"
+            ]
+        },
+        {
+            "name": "Attach to Process",
+            "type": "coreclr",
+            "request": "attach"
         }
     ]
 }
