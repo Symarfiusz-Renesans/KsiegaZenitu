@@ -8,6 +8,12 @@ glow_enabled = true
 
 [node name="Node3D" type="Node3D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 1151.0
+offset_bottom = 76.0
+
 [node name="Sun" parent="." instance=ExtResource("1_i1jh3")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
