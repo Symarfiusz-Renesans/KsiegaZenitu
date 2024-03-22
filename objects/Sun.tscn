@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkbuirjg8es75"]
+[gd_scene load_steps=6 format=3 uid="uid://bkbuirjg8es75"]
 
 [ext_resource type="PackedScene" uid="uid://cwrfogy74qpxy" path="res://3dModels/planets/Sun.dae" id="1_b6ekd"]
 [ext_resource type="Texture2D" uid="uid://cjgti4m0cbrdi" path="res://3dModels/planets/Słońce.png" id="2_j23hc"]
 [ext_resource type="Script" path="res://objects/Sun.cs" id="2_seu0m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vt4ho"]
+albedo_color = Color(0.74902, 0.407843, 0, 1)
 albedo_texture = ExtResource("2_j23hc")
 emission_enabled = true
+emission = Color(1, 0.439216, 0, 1)
 emission_energy_multiplier = 1.57
 emission_texture = ExtResource("2_j23hc")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m6lcc"]
 
 [node name="Sun" instance=ExtResource("1_b6ekd")]
 script = ExtResource("2_seu0m")
@@ -16,3 +20,9 @@ script = ExtResource("2_seu0m")
 [node name="Sphere" parent="." index="1"]
 material_override = SubResource("StandardMaterial3D_vt4ho")
 cast_shadow = 0
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("SphereShape3D_m6lcc")
