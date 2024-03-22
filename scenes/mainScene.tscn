@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhtkyhggap53a"]
+[gd_scene load_steps=4 format=3 uid="uid://bhtkyhggap53a"]
 
+[ext_resource type="Script" path="res://ui/UI.cs" id="1_blia6"]
 [ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/Sun.tscn" id="1_i1jh3"]
 
 [sub_resource type="Environment" id="Environment_gx3yr"]
@@ -9,10 +10,12 @@ glow_enabled = true
 [node name="Node3D" type="Node3D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_blia6")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 1151.0
 offset_bottom = 76.0
+text = "Clicks: 0"
 
 [node name="Sun" parent="." instance=ExtResource("1_i1jh3")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
@@ -23,3 +26,6 @@ current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gx3yr")
+
+[connection signal="TheSunWasClicked" from="Sun" to="CanvasLayer" method="OnTheSunWasClicked"]
+[connection signal="TheSunWasClicked" from="Sun" to="CanvasLayer" method="_on_sun_the_sun_was_clicked"]

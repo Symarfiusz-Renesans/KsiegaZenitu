@@ -17,9 +17,8 @@ public partial class Sun : Node3D
 		RotateY(0.1f * (float)delta);
 	}
 
-	private void OnArea3dInputEvent(Node camera, InputEvent e, Vector3 position, Vector3 normal, int shape_idx){
-		if(e is InputEventMouseButton){
-			EmitSignal(SignalName.TheSunWasClicked);
-		}
+	private void OnArea3dInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, int shape_idx){
+		if(@event is InputEventMouseButton b && b.Pressed && b.ButtonIndex == MouseButton.Left)
+				EmitSignal(SignalName.TheSunWasClicked);
 	}
 }
