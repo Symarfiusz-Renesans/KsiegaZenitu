@@ -13,12 +13,16 @@ glow_enabled = true
 [node name="CanvasLayer" parent="." instance=ExtResource("1_u8nqv")]
 
 [node name="Sun" parent="." instance=ExtResource("1_i1jh3")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 50)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-keep_aspect = 0
+transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0)
+rotation_order = 0
+projection = 1
 current = true
+fov = 60.0
+size = 10.1891
+near = 0.001
 script = ExtResource("3_cgsxx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -25,13 +25,13 @@ public partial class UI : CanvasLayer
 
 	private void OnToTheRightInputEvent(Node viewport, InputEvent @event, int shape_idx){
 		if(@event is InputEventMouseButton b && b.Pressed && (b.ButtonIndex == MouseButton.Left || b.ButtonIndex == MouseButton.Right)){
-			EmitSignal(SignalName.rotateCamera, (float)-Math.PI/2);
+			EmitSignal(SignalName.rotateCamera, -90);
 		}
 	}
 	
 	private void OnToTheLeftInputEvent(Node viewport, InputEvent @event, int shape_idx){
 		if(@event is InputEventMouseButton b && b.Pressed && (b.ButtonIndex == MouseButton.Left || b.ButtonIndex == MouseButton.Right)){
-			EmitSignal(SignalName.rotateCamera, (float)Math.PI/2);
+			EmitSignal(SignalName.rotateCamera, 90);
 		}
 	}
 }

@@ -3,28 +3,26 @@ using System;
 
 public partial class Camera3D : Godot.Camera3D
 {
-	private float rotate = 0;
-	private float howMuchWasRotated;
+	private float rotation = 0;
+	private float rotateTo = 0;
+	private const float speedOfRotation = 1;
 	public override void _Ready()
 	{
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta){
-		if(rotate != 0){
-			RotateY(rotate * (float)delta);
-			howMuchWasRotated -= rotate * (float)delta;
-			if((rotate > 0 && howMuchWasRotated <= 0) || (rotate < 0 && howMuchWasRotated >= 0)){				
-				RotateY(-howMuchWasRotated);
-				rotate = 0;
-				howMuchWasRotated = 0;
-			}
+		if(rotateTo != 0){
+			RotateY(Mathf.DegToRad(rotateTo));
+			rotateTo = 0;
 		}
 	}
 
 	private void OnRotateCamera(float angle){
-		rotate = angle;
-		howMuchWasRotated = angle;
+		if (rotation == rotateTo){
+			GD.Print(angle);
+			rotateTo = angle;
+		}
 	}
 
 }
