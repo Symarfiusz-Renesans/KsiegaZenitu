@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi3amadsebx2x"]
+
+[ext_resource type="Script" path="res://ui/UI.cs" id="1_vbkl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sv0fu"]
+size = Vector2(88, 648)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_vbkl0")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1151.0
+offset_bottom = 76.0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 50
+text = "Clicks: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="toTheLeft" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toTheLeft"]
+position = Vector2(44, 324)
+shape = SubResource("RectangleShape2D_sv0fu")
+
+[node name="toTheRight" type="Area2D" parent="."]
+position = Vector2(1064, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toTheRight"]
+position = Vector2(44, 324)
+shape = SubResource("RectangleShape2D_sv0fu")
+
+[connection signal="input_event" from="toTheLeft" to="." method="OnToTheLeftInputEvent"]
+[connection signal="input_event" from="toTheRight" to="." method="OnToTheRightInputEvent"]

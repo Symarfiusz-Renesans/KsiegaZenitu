@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhtkyhggap53a"]
+[gd_scene load_steps=5 format=3 uid="uid://bhtkyhggap53a"]
 
-[ext_resource type="Script" path="res://ui/UI.cs" id="1_blia6"]
 [ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/Sun.tscn" id="1_i1jh3"]
+[ext_resource type="PackedScene" uid="uid://bi3amadsebx2x" path="res://ui/OdczytMyszki.tscn" id="1_u8nqv"]
+[ext_resource type="Script" path="res://scenes/Camera3D.cs" id="3_cgsxx"]
 
 [sub_resource type="Environment" id="Environment_gx3yr"]
 background_mode = 1
@@ -9,23 +10,19 @@ glow_enabled = true
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("1_blia6")
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 1151.0
-offset_bottom = 76.0
-text = "Clicks: 0"
+[node name="CanvasLayer" parent="." instance=ExtResource("1_u8nqv")]
 
 [node name="Sun" parent="." instance=ExtResource("1_i1jh3")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -10, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+keep_aspect = 0
 current = true
+script = ExtResource("3_cgsxx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gx3yr")
 
+[connection signal="rotateCamera" from="CanvasLayer" to="Camera3D" method="OnRotateCamera"]
 [connection signal="TheSunWasClicked" from="Sun" to="CanvasLayer" method="OnTheSunWasClicked"]
-[connection signal="TheSunWasClicked" from="Sun" to="CanvasLayer" method="_on_sun_the_sun_was_clicked"]

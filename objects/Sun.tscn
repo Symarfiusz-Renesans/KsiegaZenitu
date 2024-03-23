@@ -21,10 +21,10 @@ script = ExtResource("2_seu0m")
 material_override = SubResource("StandardMaterial3D_vt4ho")
 cast_shadow = 0
 
-[node name="Area3D" type="Area3D" parent="." index="3"]
+[node name="ClickableArea" type="Area3D" parent="." index="3"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickableArea" index="0"]
 shape = SubResource("SphereShape3D_m6lcc")
 
-[connection signal="input_event" from="Area3D" to="." method="OnArea3dInputEvent"]
+[connection signal="input_event" from="ClickableArea" to="." method="OnArea3dInputEvent"]
