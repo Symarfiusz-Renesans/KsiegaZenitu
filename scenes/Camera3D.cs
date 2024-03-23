@@ -10,7 +10,7 @@ public partial class Camera3D : Godot.Camera3D
 	{
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	// Prowizoryczne obroty w przyszłości dodaj animację
 	public override void _PhysicsProcess(double delta){
 		if(rotateTo != 0){
 			RotateY(Mathf.DegToRad(rotateTo));

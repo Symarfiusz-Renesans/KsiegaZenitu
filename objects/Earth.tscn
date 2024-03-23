@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://pmxy2dyubdkm"]
+
+[ext_resource type="PackedScene" uid="uid://bf4c7l02t85ys" path="res://3dModels/planets/Ziemia.dae" id="1_7b24g"]
+[ext_resource type="Script" path="res://objects/Earth.cs" id="2_klqqp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xvxap"]
+albedo_color = Color(0, 0.341176, 0.741176, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1m2r"]
+albedo_color = Color(0, 0.603922, 0, 1)
+
+[node name="Ziemia" instance=ExtResource("1_7b24g")]
+script = ExtResource("2_klqqp")
+
+[node name="Icosphere" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_xvxap")
+
+[node name="Sphere" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_l1m2r")

@@ -14,7 +14,7 @@ public partial class Sun : Node3D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta){
-		RotateY(0.1f * (float)delta);
+		RotateY(-0.1f * (float)delta);
 	}
 
 	private void OnArea3dInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, int shape_idx){
