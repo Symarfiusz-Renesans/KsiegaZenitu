@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddfjinopgjx8j"]
+
+[ext_resource type="PackedScene" uid="uid://bi0j55jf06q5q" path="res://ui/mainMenuUI.tscn" id="1_toagj"]
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_toagj")]
