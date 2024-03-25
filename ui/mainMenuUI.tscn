@@ -4,18 +4,24 @@
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="GridContainer" type="GridContainer" parent="."]
-offset_right = 1153.0
-offset_bottom = 649.0
+[node name="GridContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="Label" type="Label" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 57
-text = "THE
-GREAT FOTOSPHERIC 
-WASTE INCINERATOR"
+theme_override_font_sizes/font_size = 100
+text = "THE GREAT FoToSPHERIC 
+WASTE INCINERAToR"
 horizontal_alignment = 1
 vertical_alignment = 1

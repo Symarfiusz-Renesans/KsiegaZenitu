@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddfjinopgjx8j"]
+[gd_scene load_steps=5 format=3 uid="uid://ddfjinopgjx8j"]
 
 [ext_resource type="PackedScene" uid="uid://bi0j55jf06q5q" path="res://ui/mainMenuUI.tscn" id="1_toagj"]
+[ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/Sun.tscn" id="2_5lemu"]
+
+[sub_resource type="Sky" id="Sky_lkcfd"]
+
+[sub_resource type="Environment" id="Environment_6ewpl"]
+background_mode = 2
+sky = SubResource("Sky_lkcfd")
 
 [node name="MainMenu" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_6ewpl")
+
+[node name="Sun" parent="." instance=ExtResource("2_5lemu")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -9.836, 1.525)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_toagj")]
