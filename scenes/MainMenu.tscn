@@ -14,7 +14,7 @@ sky = SubResource("Sky_lkcfd")
 [node name="Camera3D" type="Camera3D" parent="."]
 environment = SubResource("Environment_6ewpl")
 
+[node name="CanvasLayer" parent="." instance=ExtResource("1_toagj")]
+
 [node name="Sun" parent="." instance=ExtResource("2_5lemu")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -9.836, 1.525)
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_toagj")]
