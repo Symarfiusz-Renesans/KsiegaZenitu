@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://pmxy2dyubdkm"]
 
 [ext_resource type="PackedScene" uid="uid://bpoy3cacrkt5l" path="res://3dModels/planets/Earth.dae" id="1_54v0c"]
-[ext_resource type="Script" path="res://objects/Earth.cs" id="2_klqqp"]
+[ext_resource type="Script" path="res://objects/mainScenePlanet/Earth.cs" id="2_klqqp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obya1"]
 albedo_color = Color(0.0470588, 0, 0.905882, 1)

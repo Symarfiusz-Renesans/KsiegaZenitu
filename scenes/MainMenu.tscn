@@ -1,14 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddfjinopgjx8j"]
+[gd_scene load_steps=6 format=3 uid="uid://ddfjinopgjx8j"]
 
 [ext_resource type="PackedScene" uid="uid://bi0j55jf06q5q" path="res://ui/mainMenuUI.tscn" id="1_toagj"]
-[ext_resource type="PackedScene" uid="uid://dsko2e7n6xaxh" path="res://objects/UISun.tscn" id="2_gd4w8"]
+[ext_resource type="PackedScene" uid="uid://dsko2e7n6xaxh" path="res://objects/UI/UISun.tscn" id="2_gd4w8"]
+[ext_resource type="Script" path="res://scenes/trashCreator.cs" id="3_jrwo5"]
+[ext_resource type="PackedScene" uid="uid://cbsqna58i2mmp" path="res://objects/UI/UITrashLogic.tscn" id="4_f3uf3"]
+[ext_resource type="PackedScene" uid="uid://07wifjnr64te" path="res://objects/trash/trashBag1.tscn" id="5_p56mk"]
 
 [node name="MainMenu" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-near = 0.005
 
 [node name="UISun" parent="." instance=ExtResource("2_gd4w8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_toagj")]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_jrwo5")
+trash = ExtResource("4_f3uf3")
+allPossibleTrash = Array[PackedScene]([ExtResource("5_p56mk")])
+
+[node name="Timer" type="Timer" parent="Node"]
+
+[connection signal="timeout" from="Node/Timer" to="Node" method="OnTimeout"]

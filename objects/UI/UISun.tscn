@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsko2e7n6xaxh"]
+[gd_scene load_steps=4 format=3 uid="uid://dsko2e7n6xaxh"]
 
 [ext_resource type="PackedScene" uid="uid://ba5wsaxnhw1gk" path="res://3dModels/planets/UISun.dae" id="1_fa1j2"]
 [ext_resource type="Material" uid="uid://bbxjuj4dpp4m2" path="res://Tilesets/Sun.tres" id="2_0cn3g"]
+[ext_resource type="Script" path="res://objects/UI/UISun.cs" id="2_xr5em"]
 
 [node name="UISun" instance=ExtResource("1_fa1j2")]
+script = ExtResource("2_xr5em")
 
 [node name="Plane" parent="." index="0"]
 material_override = ExtResource("2_0cn3g")

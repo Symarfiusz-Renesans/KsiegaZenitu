@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbsqna58i2mmp"]
+
+[ext_resource type="Script" path="res://objects/UI/UITrashLogic.cs" id="1_qumrv"]
+
+[node name="UiTrashLogic" type="Node3D"]
+script = ExtResource("1_qumrv")

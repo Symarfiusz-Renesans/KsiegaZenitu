@@ -1,0 +1,50 @@
+using Godot;
+using System;
+
+public partial class trashCreator : Node
+{
+	[Export] private PackedScene trash;
+	[Export] private PackedScene[] allPossibleTrash;
+
+	private Timer timer;
+
+	private const int MaxXPosition = 2;
+	private const int MinXPosition = -2;
+	private const int MaxZPosition = -2;
+	private const int MinZPosition = -4;
+
+	public override void _Ready(){
+		timer = GetNode<Timer>("Timer");
+		GD.Randomize();
+		OnTimeout();
+	}
+	
+	public void OnTimeout(){
+		CreateTrash();
+		timer.WaitTime = GD.Randf()*2;
+		timer.Start();
+	}
+
+	private void CreateTrash(){
+		Node3D spawnedTrash = trash.Instantiate<Node3D>();
+
+		AddChild(spawnedTrash);
+		spawnedTrash.AddChild(allPossibleTrash[0].Instantiate());
+
+		spawnedTrash.GlobalPosition = new Vector3(
+			GD.RandRange(MinXPosition, MaxXPosition),
+			5f,
+			GD.RandRange(MinZPosition, MaxZPosition)
+		);
+		spawnedTrash.GlobalRotation = new Vector3(
+			Mathf.DegToRad(GD.RandRange(0,360)),
+			Mathf.DegToRad(GD.RandRange(0,360)),
+			Mathf.DegToRad(GD.RandRange(0,360))
+		);
+		GD.Print(spawnedTrash.GlobalPosition);
+
+
+		//PackedScene spawnedTrash = allPossibleTrash[(int)GD.Randi() % allPossibleTrash.Count -1];
+		//Node3D trashInstance = spawnedTrash.Instantiate<Node3D>();
+	}
+}

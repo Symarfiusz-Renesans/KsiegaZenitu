@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhtkyhggap53a"]
 
-[ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/Sun.tscn" id="1_i1jh3"]
+[ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/mainScenePlanet/Sun.tscn" id="1_i1jh3"]
 [ext_resource type="PackedScene" uid="uid://bi3amadsebx2x" path="res://ui/OdczytMyszki.tscn" id="1_u8nqv"]
 [ext_resource type="Script" path="res://scenes/Camera3D.cs" id="3_cgsxx"]
-[ext_resource type="PackedScene" uid="uid://pmxy2dyubdkm" path="res://objects/Earth.tscn" id="4_8fmpv"]
+[ext_resource type="PackedScene" uid="uid://pmxy2dyubdkm" path="res://objects/mainScenePlanet/Earth.tscn" id="4_8fmpv"]
 
 [sub_resource type="Sky" id="Sky_hhle3"]
 

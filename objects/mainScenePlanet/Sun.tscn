@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkbuirjg8es75"]
 
 [ext_resource type="PackedScene" uid="uid://cwrfogy74qpxy" path="res://3dModels/planets/Sun.dae" id="1_b6ekd"]
-[ext_resource type="Script" path="res://objects/Sun.cs" id="2_seu0m"]
+[ext_resource type="Script" path="res://objects/mainScenePlanet/Sun.cs" id="2_seu0m"]
 [ext_resource type="Texture2D" uid="uid://cafqbnmloivxe" path="res://3dModels/planets/images/Słońce.png" id="3_61c1h"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_avcbk"]
