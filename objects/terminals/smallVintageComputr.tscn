@@ -1,22 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bevowjtefvd1y"]
+[gd_scene load_steps=4 format=3 uid="uid://bevowjtefvd1y"]
 
 [ext_resource type="PackedScene" uid="uid://d2qgfy16b1xx1" path="res://3dModels/trash/smallVintageComputr.dae" id="1_whry8"]
-[ext_resource type="Texture2D" uid="uid://dcmr6vlquskif" path="res://2dSprites/terminal.png" id="2_pnonr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jem5j"]
 albedo_color = Color(0.647059, 0.647059, 0.647059, 1)
 metallic = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wep77"]
-albedo_texture = ExtResource("2_pnonr")
-metallic_specular = 0.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2mde"]
+albedo_color = Color(0, 0, 0, 1)
 roughness = 0.0
 
 [node name="smallVintageComputr" instance=ExtResource("1_whry8")]
 
 [node name="Cube" parent="." index="0"]
-visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_jem5j")
 
 [node name="Cube_001" parent="." index="1"]
-material_override = SubResource("StandardMaterial3D_wep77")
+material_override = SubResource("StandardMaterial3D_c2mde")

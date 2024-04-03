@@ -17,11 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-TerminalRealTimeUpdating="*res://autoloaders/TerminalRealTimeUpdating.tscn"
+TerminalRealTimeUpdating="res://autoloaders/TerminalRealTimeUpdating.tscn"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
