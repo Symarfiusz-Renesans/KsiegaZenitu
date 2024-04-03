@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bi0j55jf06q5q"]
+[gd_scene load_steps=8 format=3 uid="uid://bi0j55jf06q5q"]
 
+[ext_resource type="Script" path="res://ui/mainMenuUI.cs" id="1_7wgcl"]
 [ext_resource type="FontFile" uid="uid://dwd63g2ws8aeh" path="res://fonts/MetroPhotograph-DemoVersion-Regular.otf" id="1_qj0yx"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfucv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikan2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbssd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6s24c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiw5u"]
+
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_7wgcl")
 
 [node name="GridContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -38,31 +50,84 @@ size_flags_vertical = 0
 [node name="playButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_qj0yx")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bfucv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "play"
 
 [node name="settingsButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_qj0yx")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bfucv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "Settings"
 
 [node name="creatorsButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_qj0yx")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bfucv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "creators"
 
 [node name="exitButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
-theme_override_constants/outline_size = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_qj0yx")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bfucv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "exit"
+
+[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/playButton" to="." method="OnPlayPressed"]
+[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/settingsButton" to="." method="OnSettingsPressed"]
+[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/creatorsButton" to="." method="OnCreatorsPressed"]
+[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/exitButton" to="." method="OnExitPressed"]

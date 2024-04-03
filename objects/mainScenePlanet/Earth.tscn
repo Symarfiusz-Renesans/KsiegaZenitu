@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://pmxy2dyubdkm"]
+[gd_scene load_steps=6 format=3 uid="uid://pmxy2dyubdkm"]
 
 [ext_resource type="PackedScene" uid="uid://bpoy3cacrkt5l" path="res://3dModels/planets/Earth.dae" id="1_54v0c"]
 [ext_resource type="Script" path="res://objects/mainScenePlanet/Earth.cs" id="2_klqqp"]
@@ -10,6 +10,8 @@ roughness = 0.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abx7q"]
 albedo_color = Color(0.027451, 0.572549, 0, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ppm4t"]
+
 [node name="Earth" instance=ExtResource("1_54v0c")]
 script = ExtResource("2_klqqp")
 
@@ -18,3 +20,11 @@ material_override = SubResource("StandardMaterial3D_obya1")
 
 [node name="Sphere" parent="." index="1"]
 material_override = SubResource("StandardMaterial3D_abx7q")
+
+[node name="ClickableArea" type="Area3D" parent="." index="3"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickableArea" index="0"]
+shape = SubResource("SphereShape3D_ppm4t")
+
+[connection signal="input_event" from="ClickableArea" to="." method="OnArea3dInputEvent"]

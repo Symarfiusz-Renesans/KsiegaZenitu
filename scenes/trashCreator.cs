@@ -8,10 +8,10 @@ public partial class trashCreator : Node
 
 	private Timer timer;
 
-	private const int MaxXPosition = 2;
-	private const int MinXPosition = -2;
-	private const int MaxZPosition = -2;
-	private const int MinZPosition = -4;
+	private const int MaxXPosition = 5;
+	private const int MinXPosition = -5;
+	private const int MaxZPosition = -1;
+	private const int MinZPosition = -5;
 
 	public override void _Ready(){
 		timer = GetNode<Timer>("Timer");
@@ -21,7 +21,7 @@ public partial class trashCreator : Node
 	
 	public void OnTimeout(){
 		CreateTrash();
-		timer.WaitTime = GD.Randf()*2;
+		timer.WaitTime = GD.Randf();
 		timer.Start();
 	}
 

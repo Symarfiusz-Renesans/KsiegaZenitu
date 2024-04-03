@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="C:\Users\ASUS\Desktop\Project D.J.T.C.O.J\KsiegaZenitu\2dSprites\RotationButton.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="rotationButton.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="93.691646"
+     inkscape:cy="278.95362"
+     inkscape:window-width="1278"
+     inkscape:window-height="1360"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect846-6"
+       style="fill:#ac4d14;stroke:none;stroke-width:0.00591881;stroke-linejoin:round;fill-opacity:1"
+       d="M 3.0966146e-7,171.45001 V 85.724999 H 26.458333 v 81.134081 l -4.591452,4.59093 z m 0,-171.45001 V 85.724999 H 26.458333 V 4.590934 L 21.866881,0 Z" />
+    <rect
+       style="fill:#331c13;fill-opacity:1;stroke:none;stroke-width:0.00264583;stroke-linejoin:round"
+       id="rect2177"
+       width="21.515196"
+       height="33.675961"
+       x="2.0579753"
+       y="69.784073"
+       ry="0.19899312" />
+    <path
+       id="rect846-2"
+       style="fill:#77350f;stroke:none;stroke-width:0.00561533;stroke-linejoin:round;fill-opacity:1"
+       d="m 0,2.057755 v 83.667244 83.667241 h 6.4094277 13.7567833 1.112076 l 3.122289,-3.30419 V 164.91138 107.70195 85.724999 63.748047 6.538619 5.361947 L 21.278287,2.057755 H 20.166211 6.4094277 Z M 17.874361,71.38324 20.903115,74.412512 9.590112,85.724999 20.903115,97.037489 17.874361,100.06676 3.5326007,85.724999 Z" />
+    <path
+       id="rect846-6-9"
+       style="fill:#ac4d14;fill-opacity:1;stroke:none;stroke-width:0.00591881;stroke-linejoin:round"
+       d="M 52.916666,171.45001 V 85.724999 H 26.458333 v 81.134081 l 4.591452,4.59093 z M 52.916666,0 V 85.724999 H 26.458333 V 4.590934 L 31.049785,0 Z"
+       inkscape:export-filename="C:\Users\ASUS\Desktop\Project D.J.T.C.O.J\KsiegaZenitu\2dSprites\rotationButtonRight.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#331c13;fill-opacity:1;stroke:none;stroke-width:0.00264583;stroke-linejoin:round"
+       id="rect2177-4"
+       width="21.515196"
+       height="33.675961"
+       x="-50.858692"
+       y="69.784073"
+       ry="0.19899312"
+       transform="scale(-1,1)"
+       inkscape:export-filename="C:\Users\ASUS\Desktop\Project D.J.T.C.O.J\KsiegaZenitu\2dSprites\rotationButtonRight.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       id="rect846-2-3"
+       style="fill:#77350f;fill-opacity:1;stroke:none;stroke-width:0.00561533;stroke-linejoin:round"
+       d="M 52.916666,2.057755 V 85.724999 169.39224 H 46.507238 32.750455 31.638379 L 28.51609,166.08805 V 164.91138 107.70195 85.724999 63.748047 6.538619 5.361947 l 3.122289,-3.304192 h 1.112076 13.756783 z m -17.874361,69.325484 -3.028754,3.02927 11.313003,11.31249 -11.313003,11.31249 3.028754,3.029271 14.34176,-14.341761 z"
+       inkscape:export-filename="C:\Users\ASUS\Desktop\Project D.J.T.C.O.J\KsiegaZenitu\2dSprites\rotationButtonRight.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>

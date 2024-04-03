@@ -5,12 +5,12 @@ public partial class UI : CanvasLayer
 {
 	[Signal] public delegate void rotateCameraEventHandler(float angle = 0);
 
-	Label information;
-	private int amountOfClicks = 0;
+	Label informationAboutClicks;
+	private int amountOfClicksOnTheSun = 0;
+	private int amountOfClicksOnTheEarth = 0;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
-		information = this.GetNode<Label>("Label");
-		information.Text = "Clicks: 0";
+		informationAboutClicks = this.GetNode<Label>("HBoxContainer/clicks");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,19 +19,21 @@ public partial class UI : CanvasLayer
 	}
 
 	private void OnTheSunWasClicked(){
-		amountOfClicks++;
-		information.Text = "Clicks: "+amountOfClicks;
+		amountOfClicksOnTheSun++;
+		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
 	}
 
-	private void OnToTheRightInputEvent(Node viewport, InputEvent @event, int shape_idx){
-		if(@event is InputEventMouseButton b && b.Pressed && (b.ButtonIndex == MouseButton.Left || b.ButtonIndex == MouseButton.Right)){
-			EmitSignal(SignalName.rotateCamera, -90);
-		}
+	private void OnTheEarthWasClicked(){
+		GD.Print(amountOfClicksOnTheEarth);
+		amountOfClicksOnTheEarth++;
+		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
+	}
+
+	private void OnToTheRightInputEvent(){
+		EmitSignal(SignalName.rotateCamera, -90);
 	}
 	
-	private void OnToTheLeftInputEvent(Node viewport, InputEvent @event, int shape_idx){
-		if(@event is InputEventMouseButton b && b.Pressed && (b.ButtonIndex == MouseButton.Left || b.ButtonIndex == MouseButton.Right)){
-			EmitSignal(SignalName.rotateCamera, 90);
-		}
+	private void OnToTheLeftInputEvent(){
+		EmitSignal(SignalName.rotateCamera, 90);
 	}
 }

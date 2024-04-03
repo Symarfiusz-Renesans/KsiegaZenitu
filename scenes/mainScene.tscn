@@ -1,24 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhtkyhggap53a"]
+[gd_scene load_steps=6 format=3 uid="uid://bhtkyhggap53a"]
 
 [ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/mainScenePlanet/Sun.tscn" id="1_i1jh3"]
 [ext_resource type="PackedScene" uid="uid://bi3amadsebx2x" path="res://ui/OdczytMyszki.tscn" id="1_u8nqv"]
+[ext_resource type="PackedScene" uid="uid://d3qnhn31nxyvx" path="res://Tilesets/space.tscn" id="3_2yjd8"]
 [ext_resource type="Script" path="res://scenes/Camera3D.cs" id="3_cgsxx"]
 [ext_resource type="PackedScene" uid="uid://pmxy2dyubdkm" path="res://objects/mainScenePlanet/Earth.tscn" id="4_8fmpv"]
 
-[sub_resource type="Sky" id="Sky_hhle3"]
-
-[sub_resource type="Environment" id="Environment_gx3yr"]
-background_mode = 2
-background_energy_multiplier = 0.0
-sky = SubResource("Sky_hhle3")
-glow_enabled = true
-
 [node name="Node3D" type="Node3D"]
-
-[node name="CanvasLayer" parent="." instance=ExtResource("1_u8nqv")]
 
 [node name="Sun" parent="." instance=ExtResource("1_i1jh3")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -50)
+
+[node name="Earth" parent="." instance=ExtResource("4_8fmpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 rotation_order = 0
@@ -29,15 +23,14 @@ size = 10.1891
 near = 0.001
 script = ExtResource("3_cgsxx")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_gx3yr")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -50)
 sky_mode = 1
 
-[node name="Earth" parent="." instance=ExtResource("4_8fmpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+[node name="CanvasLayer" parent="." instance=ExtResource("1_u8nqv")]
 
-[connection signal="rotateCamera" from="CanvasLayer" to="Camera3D" method="OnRotateCamera"]
+[node name="Space" parent="." instance=ExtResource("3_2yjd8")]
+
 [connection signal="TheSunWasClicked" from="Sun" to="CanvasLayer" method="OnTheSunWasClicked"]
+[connection signal="TheEarthWasClicked" from="Earth" to="CanvasLayer" method="OnTheEarthWasClicked"]
+[connection signal="rotateCamera" from="CanvasLayer" to="Camera3D" method="OnRotateCamera"]

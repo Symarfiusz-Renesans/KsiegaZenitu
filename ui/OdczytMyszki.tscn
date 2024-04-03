@@ -1,34 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi3amadsebx2x"]
+[gd_scene load_steps=4 format=3 uid="uid://bi3amadsebx2x"]
 
 [ext_resource type="Script" path="res://ui/UI.cs" id="1_vbkl0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sv0fu"]
-size = Vector2(88, 648)
+[ext_resource type="Texture2D" uid="uid://gepo0emhfxe4" path="res://2dSprites/RotationButtonLeft.png" id="2_aarqp"]
+[ext_resource type="Texture2D" uid="uid://bh53a1xf2y8f2" path="res://2dSprites/rotationButtonRight.png" id="3_am1m3"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_vbkl0")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 1151.0
-offset_bottom = 76.0
-size_flags_vertical = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToTheLeft" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("2_aarqp")
+stretch_mode = 6
+
+[node name="clicks" type="Label" parent="HBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 20.0
 theme_override_font_sizes/font_size = 50
 text = "Clicks: 0"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="toTheLeft" type="Area2D" parent="."]
+[node name="ToTheRight" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_am1m3")
+stretch_mode = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="toTheLeft"]
-position = Vector2(44, 324)
-shape = SubResource("RectangleShape2D_sv0fu")
-
-[node name="toTheRight" type="Area2D" parent="."]
-position = Vector2(1064, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="toTheRight"]
-position = Vector2(44, 324)
-shape = SubResource("RectangleShape2D_sv0fu")
-
-[connection signal="input_event" from="toTheLeft" to="." method="OnToTheLeftInputEvent"]
-[connection signal="input_event" from="toTheRight" to="." method="OnToTheRightInputEvent"]
+[connection signal="pressed" from="HBoxContainer/ToTheLeft" to="." method="OnToTheLeftInputEvent"]
+[connection signal="pressed" from="HBoxContainer/ToTheRight" to="." method="OnToTheRightInputEvent"]

@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddfjinopgjx8j"]
+[gd_scene load_steps=8 format=3 uid="uid://ddfjinopgjx8j"]
 
 [ext_resource type="PackedScene" uid="uid://bi0j55jf06q5q" path="res://ui/mainMenuUI.tscn" id="1_toagj"]
 [ext_resource type="PackedScene" uid="uid://dsko2e7n6xaxh" path="res://objects/UI/UISun.tscn" id="2_gd4w8"]
 [ext_resource type="Script" path="res://scenes/trashCreator.cs" id="3_jrwo5"]
 [ext_resource type="PackedScene" uid="uid://cbsqna58i2mmp" path="res://objects/UI/UITrashLogic.tscn" id="4_f3uf3"]
 [ext_resource type="PackedScene" uid="uid://07wifjnr64te" path="res://objects/trash/trashBag1.tscn" id="5_p56mk"]
+[ext_resource type="PackedScene" uid="uid://d3qnhn31nxyvx" path="res://Tilesets/space.tscn" id="6_nih8c"]
+[ext_resource type="PackedScene" uid="uid://bevowjtefvd1y" path="res://objects/terminals/smallVintageComputr.tscn" id="7_6wvtb"]
 
 [node name="MainMenu" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="UISun" parent="." instance=ExtResource("2_gd4w8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -4)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_toagj")]
 
@@ -21,5 +23,13 @@ trash = ExtResource("4_f3uf3")
 allPossibleTrash = Array[PackedScene]([ExtResource("5_p56mk")])
 
 [node name="Timer" type="Timer" parent="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1, -4)
+
+[node name="smallVintageComputr" parent="." instance=ExtResource("7_6wvtb")]
+transform = Transform3D(-1, -8.44439e-08, -2.26267e-08, 0, 0.258819, -0.965926, 8.74228e-08, -0.965926, -0.258819, 0, -0.4, 0.17)
+
+[node name="Space" parent="." instance=ExtResource("6_nih8c")]
 
 [connection signal="timeout" from="Node/Timer" to="Node" method="OnTimeout"]
