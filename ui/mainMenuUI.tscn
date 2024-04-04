@@ -29,7 +29,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 75
+theme_override_constants/separation = 100
 alignment = 2
 
 [node name="Label" type="Label" parent="GridContainer/VBoxContainer"]
@@ -38,8 +38,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_qj0yx")
 theme_override_font_sizes/font_size = 100
-text = "THE GREAT FoToSPHERIC 
-WASTE INCINERAToR"
+text = "TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -65,7 +64,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
-text = "play"
+text = "PLAY"
 
 [node name="settingsButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -85,7 +84,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
-text = "Settings"
+text = "SETTINGS"
 
 [node name="creatorsButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -105,7 +104,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
-text = "creators"
+text = "CREATORS"
 
 [node name="exitButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -125,7 +124,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
-text = "exit"
+text = "EXIT"
 
 [connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/playButton" to="." method="OnPlayPressed"]
 [connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/settingsButton" to="." method="OnSettingsPressed"]

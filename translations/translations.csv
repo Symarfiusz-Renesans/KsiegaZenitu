@@ -1,6 +1,7 @@
 keys;pl;en;de;it
 TITLE;wielka fotosferyczna\n spalarnia odpadów;the great fotospheric\nwaste incinerator;die große fotosphärische\nmullverbrennunngsanlage;il grande\ninceneritore fotosferico
-PLAY;graj;play;spiel;
-SETTINGS;ustawienia;settings;die einstellungen;
-CREATORS;twórcy;creators;die autor;
-EXIT;wyjdź;exit;Verlaß;
+PLAY;graj;play;spiel;gioca
+SETTINGS;ustawienia;settings;die einstellungen;impostazioni
+CREATORS;twórcy;creators;die autor;creatori
+EXIT;wyjdź;exit;Verlaß;esci
+THANKS_FOR_COOPERATION;Dziękujemy za współpracę.;Thank you for cooperation.;Vielen Dank für Ihre Zusammenarbeit;Grazie per cooperazione.

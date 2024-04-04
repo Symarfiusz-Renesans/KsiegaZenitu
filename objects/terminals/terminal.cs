@@ -28,7 +28,7 @@ public partial class terminal : Control{
 		if(defaultLanguage == "") ChooseLanguage(commandsBody);
 	}
 
-	private void ChooseLanguage(string[] commandsBody){
+	private async void ChooseLanguage(string[] commandsBody){
 		GD.Print(commandsBody[0]);
 		switch(commandsBody[0]){
 			case "pl":{
@@ -61,7 +61,9 @@ public partial class terminal : Control{
 			}
 		}
 		if (defaultLanguage != ""){
-			terminalsComputing.Text += "[color=green]> Thank you for cooperation.[/color]\n";
+			terminalsComputing.Text += "[color=green]> "+Tr("THANKS_FOR_COOPERATION")+"	[/color]\n";
+			await ToSignal(GetTree().CreateTimer(3f), "timeout");
+			GetTree().ChangeSceneToFile("res://scenes/mainMenu.tscn");
 		}
 	}
 
