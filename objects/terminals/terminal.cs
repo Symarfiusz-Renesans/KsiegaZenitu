@@ -3,13 +3,19 @@ using System;
 
 public partial class terminal : Control{
 
-	private string defaultLanguage = "";
+	dataReader dataReader;
+
+	private string defaultLanguage = "notSpec";
 	LineEdit commandLine;
 	RichTextLabel terminalsComputing;
 	public override void _Ready(){
 		commandLine = GetNode<LineEdit>("VBoxContainer/commandLine");
 		terminalsComputing = GetNode<RichTextLabel>("VBoxContainer/terminalsComputing");
 		commandLine.GrabFocus();
+
+		dataReader = GetNode<dataReader>("/root/dataReader.tscn");
+		defaultLanguage = dataReader.GeneralDataStorage["defaultLanguage"];
+		GD.Print(defaultLanguage);
 	}
 
 	public override void _Process(double delta){
@@ -25,7 +31,7 @@ public partial class terminal : Control{
 
 	private void ComputeCommand(string command){
 		string[] commandsBody = command.StripEdges().ToLower().Split(" ");
-		if(defaultLanguage == "") ChooseLanguage(commandsBody);
+		if(defaultLanguage == "notSpec") ChooseLanguage(commandsBody);
 	}
 
 	private async void ChooseLanguage(string[] commandsBody){
