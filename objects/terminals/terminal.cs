@@ -3,7 +3,7 @@ using System;
 
 public partial class terminal : Control{
 
-	dataReader dataReader;
+	DataReader dataReader;
 
 	private string defaultLanguage = "notSpec";
 	LineEdit commandLine;
@@ -13,7 +13,7 @@ public partial class terminal : Control{
 		terminalsComputing = GetNode<RichTextLabel>("VBoxContainer/terminalsComputing");
 		commandLine.GrabFocus();
 
-		dataReader = (dataReader)GetNode("/root/DataReader");
+		dataReader = (DataReader)GetNode("/root/DataReader");
 		defaultLanguage = dataReader.GeneralDataStorage["defaultLanguage"];
 		if(defaultLanguage != "notSpec"){
 			TranslationServer.SetLocale(defaultLanguage);
@@ -71,7 +71,7 @@ public partial class terminal : Control{
 		if (defaultLanguage != ""){
 			terminalsComputing.Text += "[color=green]> "+Tr("THANKS_FOR_COOPERATION")+"	[/color]\n";
 			GD.Print("przed");
-			dataReader.ChangeData("defaultLanguage", defaultLanguage, dataReader.FileTypes.General);
+			dataReader.ChangeData("defaultLanguage", defaultLanguage, DataReader.FileTypes.General);
 			GD.Print("po");
 			await ToSignal(GetTree().CreateTimer(3f), "timeout");
 			GetTree().ChangeSceneToFile("res://scenes/mainMenu.tscn");

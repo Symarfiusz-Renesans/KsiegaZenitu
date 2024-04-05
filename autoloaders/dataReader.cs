@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class dataReader : Node
+public partial class DataReader : Node
 {
 	public enum FileTypes{
 		General,

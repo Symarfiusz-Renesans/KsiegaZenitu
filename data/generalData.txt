@@ -1,4 +1,4 @@
-defaultLanguage: notSpec
+defaultLanguage: it
 masterAudio: 50
 musicAudio: 100
 vfxAudio: 100
