@@ -17,8 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DataReader="*res://autoloaders/dataReader.tscn"
-TerminalRealTimeUpdating="res://autoloaders/TerminalRealTimeUpdating.tscn"
+DataReader="*res://autoloaders/dataReader.cs"
 
 [display]
 

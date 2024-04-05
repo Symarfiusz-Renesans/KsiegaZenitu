@@ -13,25 +13,20 @@ public partial class dataReader : Node
 	
 	private FileAccess dataFile;
 	public Dictionary<string, string> GeneralDataStorage; 
-	public Dictionary<string, string> Slot1lDataStorage; 
+	public Dictionary<string, string> Slot1DataStorage; 
 	public Dictionary<string, string> Slot2DataStorage; 
 	public Dictionary<string, string> Slot3DataStorage; 
 
 	public override void _Ready(){
 		GeneralDataStorage = ReadData(FileTypes.General);
-		Slot1lDataStorage = ReadData(FileTypes.SaveSlot1);
+		Slot1DataStorage = ReadData(FileTypes.SaveSlot1);
 		Slot2DataStorage = ReadData(FileTypes.SaveSlot2);
 		Slot3DataStorage = ReadData(FileTypes.SaveSlot3);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
 	private Dictionary<string, string> ReadData(FileTypes fileType){
 		Dictionary<string, string> dataStorage = new Dictionary<string, string>();
-		ConnectFile(fileType);
+		ConnectFile(fileType, FileAccess.ModeFlags.Read);
 		
 		while(!dataFile.EofReached()){
 			string line = dataFile.GetLine();
@@ -50,8 +45,30 @@ public partial class dataReader : Node
 	}
 
 	public void ChangeData(string what, string toWhat, FileTypes toWhichFile){
+		GD.Print("we be doin assigning");
 		string text = "";
-		foreach(KeyValuePair<string,string> entry in GeneralDataStorage){
+		Dictionary<string, string> dataStorage = null;
+
+		switch(toWhichFile){
+			case FileTypes.General:{
+				dataStorage = GeneralDataStorage;
+				break;
+			}
+			case FileTypes.SaveSlot1:{
+				dataStorage = Slot1DataStorage;
+				break;
+			}
+			case FileTypes.SaveSlot2:{
+				dataStorage = Slot2DataStorage;
+				break;
+			}
+			case FileTypes.SaveSlot3:{
+				dataStorage = Slot3DataStorage;
+				break;
+			}
+		}
+
+		foreach(KeyValuePair<string,string> entry in dataStorage){
 			if(what == entry.Key){
 				text += entry.Key + ": " + toWhat +"\n";
 			} else {
@@ -60,26 +77,26 @@ public partial class dataReader : Node
 		}
 		GD.Print(text);
 
-		ConnectFile(toWhichFile);
+		ConnectFile(toWhichFile, FileAccess.ModeFlags.Write);
 		SaveData(text);
 	}
 
-	public void ConnectFile(FileTypes toWhichFile){
+	void ConnectFile(FileTypes toWhichFile, FileAccess.ModeFlags action){
 		switch (toWhichFile){
 			case FileTypes.General:{
-				dataFile = FileAccess.Open("res://data/generalData.txt", FileAccess.ModeFlags.Write);
+				dataFile = FileAccess.Open("res://data/generalData.txt", action);
 				break;
 			}
 			case FileTypes.SaveSlot1:{
-				dataFile = FileAccess.Open("res://data/saveSlot1Data.txt", FileAccess.ModeFlags.Write);
+				dataFile = FileAccess.Open("res://data/saveSlot1Data.txt", action);
 				break;
 			}
 			case FileTypes.SaveSlot2:{
-				dataFile = FileAccess.Open("res://data/saveSlot2Data.txt", FileAccess.ModeFlags.Write);
+				dataFile = FileAccess.Open("res://data/saveSlot2Data.txt", action);
 				break;
 			}
 			case FileTypes.SaveSlot3:{
-				dataFile = FileAccess.Open("res://data/saveSlot3Data.txt", FileAccess.ModeFlags.Write);
+				dataFile = FileAccess.Open("res://data/saveSlot3Data.txt", action);
 				break;
 			}
 		}

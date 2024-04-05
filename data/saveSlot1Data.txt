@@ -1,0 +1,3 @@
+sunClicked: 0
+EarthClicked: 0
+money: 0

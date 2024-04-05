@@ -13,9 +13,12 @@ public partial class terminal : Control{
 		terminalsComputing = GetNode<RichTextLabel>("VBoxContainer/terminalsComputing");
 		commandLine.GrabFocus();
 
-		dataReader = GetNode<dataReader>("/root/dataReader.tscn");
+		dataReader = (dataReader)GetNode("/root/DataReader");
 		defaultLanguage = dataReader.GeneralDataStorage["defaultLanguage"];
-		GD.Print(defaultLanguage);
+		if(defaultLanguage != "notSpec"){
+			TranslationServer.SetLocale(defaultLanguage);
+			GetTree().ChangeSceneToFile("res://scenes/mainMenu.tscn");
+		}
 	}
 
 	public override void _Process(double delta){
@@ -35,7 +38,6 @@ public partial class terminal : Control{
 	}
 
 	private async void ChooseLanguage(string[] commandsBody){
-		GD.Print(commandsBody[0]);
 		switch(commandsBody[0]){
 			case "pl":{
 				terminalsComputing.Text += "\n[color=green]> Język pomyślnie ustawiony![/color]\n";
@@ -68,6 +70,9 @@ public partial class terminal : Control{
 		}
 		if (defaultLanguage != ""){
 			terminalsComputing.Text += "[color=green]> "+Tr("THANKS_FOR_COOPERATION")+"	[/color]\n";
+			GD.Print("przed");
+			dataReader.ChangeData("defaultLanguage", defaultLanguage, dataReader.FileTypes.General);
+			GD.Print("po");
 			await ToSignal(GetTree().CreateTimer(3f), "timeout");
 			GetTree().ChangeSceneToFile("res://scenes/mainMenu.tscn");
 		}
