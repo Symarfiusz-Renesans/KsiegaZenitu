@@ -2,8 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class DataReader : Node
-{
+public partial class DataReader : Node{
 	public enum FileTypes{
 		General,
 		SaveSlot1,
@@ -16,6 +15,8 @@ public partial class DataReader : Node
 	public Dictionary<string, string> Slot1DataStorage; 
 	public Dictionary<string, string> Slot2DataStorage; 
 	public Dictionary<string, string> Slot3DataStorage; 
+
+	public Dictionary<string, string> ChosenSlot;
 
 	public override void _Ready(){
 		GeneralDataStorage = ReadData(FileTypes.General);
@@ -97,6 +98,23 @@ public partial class DataReader : Node
 			}
 			case FileTypes.SaveSlot3:{
 				dataFile = FileAccess.Open("res://data/saveSlot3Data.txt", action);
+				break;
+			}
+		}
+	}
+
+	public void ChooseSlot(FileTypes fileTypes){
+		switch(fileTypes){
+			case FileTypes.SaveSlot1:{
+				ChosenSlot = Slot1DataStorage;
+				break;
+			}
+			case FileTypes.SaveSlot2:{
+				ChosenSlot = Slot2DataStorage;
+				break;
+			}
+			case FileTypes.SaveSlot3:{
+				ChosenSlot = Slot3DataStorage;
 				break;
 			}
 		}

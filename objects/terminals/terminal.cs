@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class terminal : Control{
+public partial class Terminal : Control{
 
 	DataReader dataReader;
 

@@ -1,3 +1,3 @@
-sunClicked: 0
-EarthClicked: 0
+sunClicked: 21
+EarthClicked: 37
 money: 0

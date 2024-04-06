@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmjykkvth7ldy"]
 
-[ext_resource type="Script" path="res://objects/terminals/terminal.cs" id="1_lmpuh"]
-[ext_resource type="FontFile" uid="uid://cpl1e02scu4t1" path="res://fonts/Plasmatic.otf" id="2_p7343"]
+[ext_resource type="Script" path="res://objects/terminals/Terminal.cs" id="1_741mq"]
+[ext_resource type="FontFile" uid="uid://cpl1e02scu4t1" path="res://fonts/Plasmatic.otf" id="2_4ngno"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_lmpuh")
+script = ExtResource("1_741mq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -28,7 +28,7 @@ offset_bottom = 648.0
 [node name="terminalsComputing" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("2_p7343")
+theme_override_fonts/normal_font = ExtResource("2_4ngno")
 bbcode_enabled = true
 text = "[color=orange]
                                                                                    8888
@@ -51,7 +51,7 @@ text = "[color=orange]
 
 [node name="commandLine" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_p7343")
+theme_override_fonts/font = ExtResource("2_4ngno")
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false

@@ -1,7 +1,10 @@
-keys;pl;en;de;it
-TITLE;wielka fotosferyczna\n spalarnia odpadów;the great fotospheric\nwaste incinerator;die große fotosphärische\nmullverbrennunngsanlage;il grande\ninceneritore fotosferico
-PLAY;graj;play;spiel;gioca
-SETTINGS;ustawienia;settings;die einstellungen;impostazioni
-CREATORS;twórcy;creators;die autor;creatori
-EXIT;wyjdź;exit;Verlaß;esci
-THANKS_FOR_COOPERATION;Dziękujemy za współpracę.;Thank you for cooperation.;Vielen Dank für Ihre Zusammenarbeit;Grazie per cooperazione.
+keys,pl,en,de,it
+TITLE,wielka fotosferyczna\n spalarnia odpadów,the great fotospheric\nwaste incinerator,die große fotosphärische\nmullverbrennunngsanlage,il grande\ninceneritore fotosferico
+PLAY,graj,play,spiel,gioca
+SETTINGS,ustawienia,settings,die einstellungen,impostazioni
+CREATORS,twórcy,creators,die autor,creatori
+EXIT,wyjdź,exit,Verlaß,esci
+GO_BACK,wróć,go back,zurück,ritorna
+LANGUAGE_CHOSEN_SUCCESSFULLY,Język pomyślnie ustawiony!,Language successfuly set!,Die Sprache wurde erfolgreich eingestellt!,La lingua è stata selezionata con successo!
+BEFORE_ANYTHING_ELSE,"Nim przejdziesz dalej, prosimy o ustawienie języka","Before anything else, please, choose preffered language.",,
+THANKS_FOR_COOPERATION,Dziękujemy za współpracę.,Thank you for cooperation.,Vielen Dank für Ihre Zusammenarbeit,Grazie per cooperazione.

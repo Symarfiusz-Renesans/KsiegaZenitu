@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi0j55jf06q5q"]
+[gd_scene load_steps=12 format=3 uid="uid://bi0j55jf06q5q"]
 
-[ext_resource type="Script" path="res://ui/mainMenuUI.cs" id="1_7wgcl"]
+[ext_resource type="Script" path="res://ui/MainMenuUI.cs" id="1_7wgcl"]
 [ext_resource type="FontFile" uid="uid://dwd63g2ws8aeh" path="res://fonts/MetroPhotograph-DemoVersion-Regular.otf" id="1_qj0yx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfucv"]
@@ -13,10 +13,23 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiw5u"]
 
+[sub_resource type="Gradient" id="Gradient_odt1t"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b8qk1"]
+gradient = SubResource("Gradient_odt1t")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_mdoa7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ro7nw"]
+gradient = SubResource("Gradient_mdoa7")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_7wgcl")
 
-[node name="GridContainer" type="MarginContainer" parent="."]
+[node name="MainMenu" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,12 +40,12 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer"]
+[node name="TitleCard" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 2
 theme_override_constants/separation = 100
 alignment = 2
 
-[node name="Label" type="Label" parent="GridContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MainMenu/TitleCard"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -42,11 +55,11 @@ text = "TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/VBoxContainer"]
+[node name="MainOptions" type="VBoxContainer" parent="MainMenu/TitleCard"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="playButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
+[node name="playButton" type="Button" parent="MainMenu/TitleCard/MainOptions"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -66,7 +79,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "PLAY"
 
-[node name="settingsButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
+[node name="settingsButton" type="Button" parent="MainMenu/TitleCard/MainOptions"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -86,7 +99,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "SETTINGS"
 
-[node name="creatorsButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
+[node name="creatorsButton" type="Button" parent="MainMenu/TitleCard/MainOptions"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -106,7 +119,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "CREATORS"
 
-[node name="exitButton" type="Button" parent="GridContainer/VBoxContainer/VBoxContainer"]
+[node name="exitButton" type="Button" parent="MainMenu/TitleCard/MainOptions"]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -126,7 +139,62 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "EXIT"
 
-[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/playButton" to="." method="OnPlayPressed"]
-[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/settingsButton" to="." method="OnSettingsPressed"]
-[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/creatorsButton" to="." method="OnCreatorsPressed"]
-[connection signal="pressed" from="GridContainer/VBoxContainer/VBoxContainer/exitButton" to="." method="OnExitPressed"]
+[node name="SaveSlots" type="VBoxContainer" parent="MainMenu"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/SaveSlots"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+
+[node name="SaveSlot1" type="TextureButton" parent="MainMenu/SaveSlots/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_b8qk1")
+texture_pressed = SubResource("GradientTexture2D_ro7nw")
+stretch_mode = 0
+
+[node name="SaveSlot2" type="TextureButton" parent="MainMenu/SaveSlots/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_b8qk1")
+texture_pressed = SubResource("GradientTexture2D_ro7nw")
+stretch_mode = 0
+
+[node name="SaveSlot3" type="TextureButton" parent="MainMenu/SaveSlots/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("GradientTexture2D_b8qk1")
+texture_pressed = SubResource("GradientTexture2D_ro7nw")
+stretch_mode = 0
+
+[node name="goBackButton" type="Button" parent="MainMenu/SaveSlots"]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_qj0yx")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bfucv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
+text = "GO_BACK"
+
+[connection signal="pressed" from="MainMenu/TitleCard/MainOptions/playButton" to="." method="OnPlayPressed"]
+[connection signal="pressed" from="MainMenu/TitleCard/MainOptions/settingsButton" to="." method="OnSettingsPressed"]
+[connection signal="pressed" from="MainMenu/TitleCard/MainOptions/creatorsButton" to="." method="OnCreatorsPressed"]
+[connection signal="pressed" from="MainMenu/TitleCard/MainOptions/exitButton" to="." method="OnExitPressed"]
+[connection signal="pressed" from="MainMenu/SaveSlots/HBoxContainer/SaveSlot1" to="." method="OnSaveSlot1Pressed"]
+[connection signal="pressed" from="MainMenu/SaveSlots/HBoxContainer/SaveSlot2" to="." method="OnSaveSlot2Pressed"]
+[connection signal="pressed" from="MainMenu/SaveSlots/HBoxContainer/SaveSlot3" to="." method="OnSaveSlot3Pressed"]
+[connection signal="pressed" from="MainMenu/SaveSlots/goBackButton" to="." method="OnGoBackPressed"]
