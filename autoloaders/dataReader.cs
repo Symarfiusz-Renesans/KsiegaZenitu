@@ -46,7 +46,6 @@ public partial class DataReader : Node{
 	}
 
 	public void ChangeData(string what, string toWhat, FileTypes toWhichFile){
-		GD.Print("we be doin assigning");
 		string text = "";
 		Dictionary<string, string> dataStorage = null;
 
@@ -72,11 +71,11 @@ public partial class DataReader : Node{
 		foreach(KeyValuePair<string,string> entry in dataStorage){
 			if(what == entry.Key){
 				text += entry.Key + ": " + toWhat +"\n";
+				GD.Print(entry.Key + ": " + toWhat);
 			} else {
 				text += entry.Key + ": " + entry.Value+"\n";
 			}
 		}
-		GD.Print(text);
 
 		ConnectFile(toWhichFile, FileAccess.ModeFlags.Write);
 		SaveData(text);

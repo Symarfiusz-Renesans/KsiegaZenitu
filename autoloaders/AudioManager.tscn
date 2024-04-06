@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://us5uoqyj7e80"]
+
+[ext_resource type="Script" path="res://autoloaders/AudioManager.cs" id="1_vps1q"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_vps1q")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="VFXPlayer" type="AudioStreamPlayer" parent="."]
