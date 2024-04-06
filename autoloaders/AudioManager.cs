@@ -8,6 +8,8 @@ public partial class AudioManager : Node
 	public override void _Ready(){
 		MusicPlayer = GetNode<AudioStreamPlayer>("MusicPlayer");
 		VFXPlayer = GetNode<AudioStreamPlayer>("VFXPlayer");
-	}
+
+		MusicPlayer.Stream = GD.Load<AudioStream>("res://music/burningMemory.mp3"); 
+		MusicPlayer.Play();
 	}
 }

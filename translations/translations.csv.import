@@ -12,5 +12,5 @@ dest_files=["res://translations/translations.pl.translation", "res://translation
 
 [params]
 
-compress=true
+compress=false
 delimiter=1

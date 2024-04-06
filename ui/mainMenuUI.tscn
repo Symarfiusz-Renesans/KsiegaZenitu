@@ -302,7 +302,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_5t61m")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_25c7h")
 text = "<"
 
-[node name="Label" type="Label" parent="MainMenu/SettingsContainer/Settings/Language"]
+[node name="Language" type="Label" parent="MainMenu/SettingsContainer/Settings/Language"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -310,7 +310,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_qj0yx")
 theme_override_font_sizes/font_size = 50
-text = "MASTER_AUDIO"
+text = "LANGUAGE"
 horizontal_alignment = 1
 
 [node name="NextLanguage" type="Button" parent="MainMenu/SettingsContainer/Settings/Language"]
@@ -362,4 +362,6 @@ text = "GO_BACK"
 [connection signal="value_changed" from="MainMenu/SettingsContainer/Settings/MasterAudio/MaASlider" to="." method="OnMaASliderValueChanged"]
 [connection signal="value_changed" from="MainMenu/SettingsContainer/Settings/MusicAudio/MuASlider" to="." method="OnMuASliderValueChanged"]
 [connection signal="value_changed" from="MainMenu/SettingsContainer/Settings/VFXAudio/VASlider" to="." method="OnVASliderValueChanged"]
+[connection signal="pressed" from="MainMenu/SettingsContainer/Settings/Language/PreviousLanguage" to="." method="OnPreviousLanguagePressed"]
+[connection signal="pressed" from="MainMenu/SettingsContainer/Settings/Language/NextLanguage" to="." method="OnNextLanguagePressed"]
 [connection signal="pressed" from="MainMenu/SettingsContainer/Settings/goBackButton" to="." method="OnGoBackPressed"]

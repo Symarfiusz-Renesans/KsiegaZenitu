@@ -11,7 +11,14 @@ public partial class MainMenuUI : CanvasLayer
 	private HSlider MaASlider;
 	private HSlider MuASlider;
 	private HSlider VASlider;
-	// Called when the node enters the scene tree for the first time.
+	private Label ChosenLanguage;
+	private enum AvailableLanguage{
+		Polski = 0,
+		English = 1,
+		Deutsch = 2,
+		Italiana = 3
+	}
+	private int ChosenLanguageId;
 	public override void _Ready(){
 		dataReader = (DataReader)GetNode("/root/DataReader");
 
@@ -21,15 +28,34 @@ public partial class MainMenuUI : CanvasLayer
 		MaASlider = GetNode<HSlider>("MainMenu/SettingsContainer/Settings/MasterAudio/MaASlider");
 		MuASlider = GetNode<HSlider>("MainMenu/SettingsContainer/Settings/MusicAudio/MuASlider");
 		VASlider = GetNode<HSlider>("MainMenu/SettingsContainer/Settings/VFXAudio/VASlider");
+		ChosenLanguage = GetNode<Label>("MainMenu/SettingsContainer/Settings/Language/Language");
 
-		GD.Print(float.Parse(dataReader.GeneralDataStorage["masterAudio"]));
 		MaASlider.Value = float.Parse(dataReader.GeneralDataStorage["masterAudio"]);
 		MuASlider.Value = float.Parse(dataReader.GeneralDataStorage["musicAudio"]);
 		VASlider.Value = float.Parse(dataReader.GeneralDataStorage["vfxAudio"]);
 
-		if (dataReader.GeneralDataStorage["defaultLanguage"] == "notSpec"){
-			GetTree().ChangeSceneToFile("res://objects/terminals/terminal.tscn");
+		switch (dataReader.GeneralDataStorage["defaultLanguage"]){
+			case "notSpec":
+				GetTree().ChangeSceneToFile("res://objects/terminals/terminal.tscn");
+				break;
+			case "pl":
+				ChosenLanguage.Text = AvailableLanguage.Polski.ToString();
+				ChosenLanguageId = 0;
+				break;
+			case "en":
+				ChosenLanguage.Text = AvailableLanguage.English.ToString();
+				ChosenLanguageId = 1;
+				break;
+			case "de":
+				ChosenLanguage.Text = AvailableLanguage.Deutsch.ToString();
+				ChosenLanguageId = 2;
+				break;
+			case "it":
+				ChosenLanguage.Text = AvailableLanguage.Italiana.ToString();
+				ChosenLanguageId = 3;
+				break;
 		}
+		TranslationServer.SetLocale(dataReader.GeneralDataStorage["defaultLanguage"]);
 	}
 
 	public void OnPlayPressed(){
@@ -41,7 +67,7 @@ public partial class MainMenuUI : CanvasLayer
 		Settings.Visible = true;		
 	}
 	public void OnCreatorsPressed(){
-
+		GD.Print("Work in progress!");
 	}
 	public void OnExitPressed(){
 		GetTree().Quit();
@@ -75,7 +101,48 @@ public partial class MainMenuUI : CanvasLayer
 		dataReader.ChangeData("vfxAudio", Value.ToString("0.00"), DataReader.FileTypes.General);
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("VFX"), Mathf.LinearToDb(Value));
 	}
+	public void OnPreviousLanguagePressed(){
+		GD.Print(((AvailableLanguage)ChosenLanguageId).ToString());
+		if(ChosenLanguageId <= 0) ChosenLanguageId = Enum.GetNames(typeof(AvailableLanguage)).Length-1;
+		else ChosenLanguageId--;
+		GD.Print(ChosenLanguageId);
+
+		ChosenLanguage.Text = ((AvailableLanguage)ChosenLanguageId).ToString();
+		setLanguage();
+	}
+	public void OnNextLanguagePressed(){
+		GD.Print(Enum.GetNames(typeof(AvailableLanguage)).Length-1);
+		if(ChosenLanguageId >= (Enum.GetNames(typeof(AvailableLanguage)).Length-1)) ChosenLanguageId = 0;
+		else ChosenLanguageId++;
+		GD.Print(ChosenLanguageId);
+
+		ChosenLanguage.Text = ((AvailableLanguage)ChosenLanguageId).ToString();
+		setLanguage();
+	}
 	public void toTheMainScene(){
 		GetTree().ChangeSceneToFile("res://scenes/mainScene.tscn");
+	}
+	private void setLanguage(){
+
+		string ChosenLanguage = null;
+
+		switch((AvailableLanguage)ChosenLanguageId){
+			case AvailableLanguage.Polski:
+				ChosenLanguage = "pl";
+				break;
+			case AvailableLanguage.English:
+				ChosenLanguage = "en";
+				break;
+			case AvailableLanguage.Deutsch:
+				ChosenLanguage = "de";
+				break;
+			case AvailableLanguage.Italiana:
+				ChosenLanguage = "it";
+				break;
+		}
+
+		TranslationServer.SetLocale(ChosenLanguage);
+		dataReader.ChangeData("defaultLanguage", ChosenLanguage, DataReader.FileTypes.General);
+				
 	}
 }
