@@ -22,8 +22,7 @@ public partial class UI : CanvasLayer
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	public override void _Process(double delta){
 	}
 
 	private void OnTheSunWasClicked(){
@@ -43,5 +42,13 @@ public partial class UI : CanvasLayer
 	
 	private void OnToTheLeftInputEvent(){
 		EmitSignal(SignalName.rotateCamera, 90);
+	}
+
+	public override void _Notification(int what){
+    	if (what == NotificationWMCloseRequest){
+			dataReader.ChangeData("sunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
+        	GetTree().Quit();
+		}
 	}
 }

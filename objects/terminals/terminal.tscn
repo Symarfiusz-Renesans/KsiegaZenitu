@@ -16,7 +16,7 @@ script = ExtResource("1_741mq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 1152.0
+offset_right = 864.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
@@ -40,14 +40,7 @@ text = "[color=orange]
         888888        8888        8888  8888                  8888        8888888
    ____________________________________________________________________________________________________
 [/color]
-
-  Unable to find user settings. Configuration needed.
-  Please select default language:
-  - pl - [polski],
-  - en - [English],
-  - de - [deutsch],
-  - it - [italiana].
-   ____________________________________________________________________________________________________"
+"
 
 [node name="commandLine" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2

@@ -1,0 +1,8 @@
+
+  Unable to find user settings. Configuration needed.
+  Please select default language:
+  - pl - [polski],
+  - en - [English],
+  - de - [deutsch],
+  - it - [italiana].
+   ____________________________________________________________________________________________________

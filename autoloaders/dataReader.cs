@@ -17,6 +17,7 @@ public partial class DataReader : Node{
 	public Dictionary<string, string> Slot3DataStorage; 
 
 	public Dictionary<string, string> ChosenSlot;
+	public FileTypes ChosenSlotId;
 
 	public override void _Ready(){
 		GeneralDataStorage = ReadData(FileTypes.General);
@@ -71,7 +72,6 @@ public partial class DataReader : Node{
 		foreach(KeyValuePair<string,string> entry in dataStorage){
 			if(what == entry.Key){
 				text += entry.Key + ": " + toWhat +"\n";
-				GD.Print(entry.Key + ": " + toWhat);
 			} else {
 				text += entry.Key + ": " + entry.Value+"\n";
 			}
@@ -79,6 +79,7 @@ public partial class DataReader : Node{
 
 		ConnectFile(toWhichFile, FileAccess.ModeFlags.Write);
 		SaveData(text);
+		ReadData(toWhichFile);
 	}
 
 	void ConnectFile(FileTypes toWhichFile, FileAccess.ModeFlags action){
@@ -117,5 +118,6 @@ public partial class DataReader : Node{
 				break;
 			}
 		}
+		ChosenSlotId = fileTypes;
 	}
 }

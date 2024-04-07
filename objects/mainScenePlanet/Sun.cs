@@ -7,7 +7,6 @@ public partial class Sun : Node3D
 
 	[Export] Area3D clickablaArea;
 	public override void _Ready(){
-		this.Scale = new Vector3(4,4,4);
 		clickablaArea = this.GetNode<Area3D>("ClickableArea");
 		//clickablaArea.Connect("input_event",Callable.From(() => ));
 	}

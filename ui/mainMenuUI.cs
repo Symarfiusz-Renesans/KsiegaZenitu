@@ -35,9 +35,6 @@ public partial class MainMenuUI : CanvasLayer
 		VASlider.Value = float.Parse(dataReader.GeneralDataStorage["vfxAudio"]);
 
 		switch (dataReader.GeneralDataStorage["defaultLanguage"]){
-			case "notSpec":
-				GetTree().ChangeSceneToFile("res://objects/terminals/terminal.tscn");
-				break;
 			case "pl":
 				ChosenLanguage.Text = AvailableLanguage.Polski.ToString();
 				ChosenLanguageId = 0;
@@ -120,7 +117,7 @@ public partial class MainMenuUI : CanvasLayer
 		setLanguage();
 	}
 	public void toTheMainScene(){
-		GetTree().ChangeSceneToFile("res://scenes/mainScene.tscn");
+		GetTree().ChangeSceneToFile("res://scenes/MainScene.tscn");
 	}
 	private void setLanguage(){
 
