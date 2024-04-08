@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7yglfs26xwyd"]
+[gd_scene load_steps=13 format=3 uid="uid://c7yglfs26xwyd"]
 
+[ext_resource type="Script" path="res://ui/SettingsUI.cs" id="1_lv7eu"]
 [ext_resource type="FontFile" uid="uid://dwd63g2ws8aeh" path="res://fonts/MetroPhotograph-DemoVersion-Regular.otf" id="1_uafxv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmhud"]
@@ -26,6 +27,7 @@
 visible = false
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_right = 100
+script = ExtResource("1_lv7eu")
 
 [node name="Settings" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -171,3 +173,10 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "GO_BACK"
+
+[connection signal="value_changed" from="Settings/MasterAudio/MaASlider" to="." method="OnMaASliderValueChanged"]
+[connection signal="value_changed" from="Settings/MusicAudio/MuASlider" to="." method="OnMuASliderValueChanged"]
+[connection signal="value_changed" from="Settings/VFXAudio/VASlider" to="." method="OnVASliderValueChanged"]
+[connection signal="pressed" from="Settings/Language/PreviousLanguage" to="." method="OnPreviousLanguagePressed"]
+[connection signal="pressed" from="Settings/Language/NextLanguage" to="." method="OnNextLanguagePressed"]
+[connection signal="pressed" from="Settings/goBackButton" to="." method="OnGoBackPressed"]

@@ -202,3 +202,4 @@ layout_mode = 2
 [connection signal="pressed" from="MainMenu/SaveSlots/HBoxContainer/SaveSlot2" to="." method="OnSaveSlot2Pressed"]
 [connection signal="pressed" from="MainMenu/SaveSlots/HBoxContainer/SaveSlot3" to="." method="OnSaveSlot3Pressed"]
 [connection signal="pressed" from="MainMenu/SaveSlots/goBackButton" to="." method="OnGoBackPressed"]
+[connection signal="onGoBackClicked" from="MainMenu/SettingsContainer" to="." method="OnSettingsContainerOnGoBackClicked"]
