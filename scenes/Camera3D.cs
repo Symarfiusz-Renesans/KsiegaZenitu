@@ -1,8 +1,8 @@
 using Godot;
 using System;
 
-public partial class Camera3D : Godot.Camera3D
-{
+public partial class Camera3D : Godot.Camera3D{
+	[Signal] public delegate void TheAngleChangedEventHandler(float angle);
 	private float rotation = 0;
 	private float rotateTo = 0;
 	private const float speedOfRotation = 1;
@@ -15,14 +15,18 @@ public partial class Camera3D : Godot.Camera3D
 		if(rotateTo != 0){
 			RotateY(Mathf.DegToRad(rotateTo));
 			rotateTo = 0;
+			EmitSignal(SignalName.TheAngleChanged, whatAngle());
 		}
 	}
 
 	private void OnRotateCamera(float angle){
-		if (rotation == rotateTo){
-			GD.Print(angle);
-			rotateTo = angle;
-		}
+		rotateTo = angle;
+		rotation += angle;
+	}
+
+	private float whatAngle(){
+		GD.Print(Math.Abs(rotation % 360));
+		return Math.Abs(rotation % 360);
 	}
 
 }

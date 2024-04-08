@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi3amadsebx2x"]
+[gd_scene load_steps=6 format=3 uid="uid://bi3amadsebx2x"]
 
 [ext_resource type="Script" path="res://ui/UI.cs" id="1_vbkl0"]
 [ext_resource type="Texture2D" uid="uid://gepo0emhfxe4" path="res://2dSprites/RotationButtonLeft.png" id="2_aarqp"]
+[ext_resource type="FontFile" uid="uid://cpl1e02scu4t1" path="res://fonts/Plasmatic.otf" id="3_6wmjm"]
 [ext_resource type="Texture2D" uid="uid://bh53a1xf2y8f2" path="res://2dSprites/rotationButtonRight.png" id="3_am1m3"]
+[ext_resource type="FontFile" uid="uid://cqgfvbf3y2wmh" path="res://fonts/Evil Empire.otf" id="3_bnggm"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_vbkl0")
@@ -21,15 +23,81 @@ layout_mode = 2
 texture_normal = ExtResource("2_aarqp")
 stretch_mode = 6
 
-[node name="clicks" type="Label" parent="HBoxContainer"]
+[node name="InfoContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="DataInfo" type="HBoxContainer" parent="HBoxContainer/InfoContainer"]
+layout_mode = 2
+
+[node name="Clicks" type="Label" parent="HBoxContainer/InfoContainer/DataInfo"]
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 20.0
+theme_override_fonts/font = ExtResource("3_6wmjm")
 theme_override_font_sizes/font_size = 50
 text = "Clicks: 0"
 horizontal_alignment = 1
+
+[node name="Money" type="Label" parent="HBoxContainer/InfoContainer/DataInfo"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 20.0
+theme_override_fonts/font = ExtResource("3_6wmjm")
+theme_override_font_sizes/font_size = 50
+text = "Money: 0"
+horizontal_alignment = 1
+
+[node name="Shop" type="MarginContainer" parent="HBoxContainer/InfoContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 70
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/InfoContainer/Shop"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+color = Color(0.309804, 0.309804, 0.309804, 0.803922)
+
+[node name="GameplayInfo" type="MarginContainer" parent="HBoxContainer/InfoContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 70
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/InfoContainer/GameplayInfo"]
+layout_mode = 2
+color = Color(0.309804, 0.309804, 0.309804, 0.803922)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/InfoContainer/GameplayInfo"]
+layout_mode = 2
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("3_bnggm")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]Unfortunately, nothing's here yet (Game's still early development at the and of a day)!
+A shame, to be sure, but as a compensation for this I'll write here how this game works, if you need any help, That is.
+
+Use arrows on the sides of the screen to navigate around the game.
+Click on The Earth to send trash into The Space and click on the send the trash into The Sun to earn money.
+on the other side of the game there is a shop in which you can buy clickers and upgrades for your hard earned money to earn even more money!
+Press esc to access pause menu to save (which is also done automatically), Change Settings or quit to the main scene.
+
+That's all for now. Have Fun!
+[/center]"
+fit_content = true
+scroll_active = false
 
 [node name="ToTheRight" type="TextureButton" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

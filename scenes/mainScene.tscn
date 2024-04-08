@@ -10,9 +10,9 @@
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("4_37h7y")]
+[node name="MainUI" parent="." instance=ExtResource("4_37h7y")]
 
-[node name="CanvasLayer2" parent="." instance=ExtResource("1_dskb5")]
+[node name="PauseMenu" parent="." instance=ExtResource("1_dskb5")]
 
 [node name="Sun" parent="." instance=ExtResource("1_afxws")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -50)
@@ -42,6 +42,7 @@ sky_mode = 1
 [node name="CoronaTrashBin" parent="." instance=ExtResource("6_l20fs")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -50)
 
-[connection signal="rotateCamera" from="CanvasLayer" to="Camera3D" method="OnRotateCamera"]
-[connection signal="TheSunWasClicked" from="Sun" to="CanvasLayer" method="OnTheSunWasClicked"]
-[connection signal="TheEarthWasClicked" from="Earth" to="CanvasLayer" method="OnTheEarthWasClicked"]
+[connection signal="rotateCamera" from="MainUI" to="Camera3D" method="OnRotateCamera"]
+[connection signal="TheSunWasClicked" from="Sun" to="MainUI" method="OnTheSunWasClicked"]
+[connection signal="TheEarthWasClicked" from="Earth" to="MainUI" method="OnTheEarthWasClicked"]
+[connection signal="TheAngleChanged" from="Camera3D" to="MainUI" method="OnCamerasAngleChanged"]
