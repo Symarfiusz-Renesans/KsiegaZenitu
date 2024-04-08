@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bi0j55jf06q5q"]
+[gd_scene load_steps=13 format=3 uid="uid://bi0j55jf06q5q"]
 
 [ext_resource type="Script" path="res://ui/MainMenuUI.cs" id="1_7wgcl"]
 [ext_resource type="FontFile" uid="uid://dwd63g2ws8aeh" path="res://fonts/MetroPhotograph-DemoVersion-Regular.otf" id="1_qj0yx"]
+[ext_resource type="PackedScene" uid="uid://c7yglfs26xwyd" path="res://ui/Settings.tscn" id="3_iwt4h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfucv"]
 
@@ -25,16 +26,6 @@ fill_to = Vector2(1, 1)
 gradient = SubResource("Gradient_mdoa7")
 fill_from = Vector2(1, 1)
 fill_to = Vector2(0, 0)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmhud"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hemmf"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_opfg1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5t61m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25c7h"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_7wgcl")
@@ -200,156 +191,8 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
 text = "GO_BACK"
 
-[node name="SettingsContainer" type="MarginContainer" parent="MainMenu"]
-visible = false
+[node name="SettingsContainer" parent="MainMenu" instance=ExtResource("3_iwt4h")]
 layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
-
-[node name="Settings" type="VBoxContainer" parent="MainMenu/SettingsContainer"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="MasterAudio" type="HBoxContainer" parent="MainMenu/SettingsContainer/Settings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 50
-
-[node name="Label" type="Label" parent="MainMenu/SettingsContainer/Settings/MasterAudio"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 50
-text = "MASTER_AUDIO"
-horizontal_alignment = 1
-
-[node name="MaASlider" type="HSlider" parent="MainMenu/SettingsContainer/Settings/MasterAudio"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-
-[node name="MusicAudio" type="HBoxContainer" parent="MainMenu/SettingsContainer/Settings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 50
-
-[node name="Label" type="Label" parent="MainMenu/SettingsContainer/Settings/MusicAudio"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 50
-text = "MUSIC_AUDIO"
-horizontal_alignment = 1
-
-[node name="MuASlider" type="HSlider" parent="MainMenu/SettingsContainer/Settings/MusicAudio"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-
-[node name="VFXAudio" type="HBoxContainer" parent="MainMenu/SettingsContainer/Settings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 50
-
-[node name="Label" type="Label" parent="MainMenu/SettingsContainer/Settings/VFXAudio"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 50
-text = "VFX_AUDIO"
-horizontal_alignment = 1
-
-[node name="VASlider" type="HSlider" parent="MainMenu/SettingsContainer/Settings/VFXAudio"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-
-[node name="Language" type="HBoxContainer" parent="MainMenu/SettingsContainer/Settings"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 50
-
-[node name="PreviousLanguage" type="Button" parent="MainMenu/SettingsContainer/Settings/Language"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
-theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_lmhud")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_hemmf")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_opfg1")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_5t61m")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_25c7h")
-text = "<"
-
-[node name="Language" type="Label" parent="MainMenu/SettingsContainer/Settings/Language"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 50
-text = "LANGUAGE"
-horizontal_alignment = 1
-
-[node name="NextLanguage" type="Button" parent="MainMenu/SettingsContainer/Settings/Language"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
-theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_lmhud")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_hemmf")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_opfg1")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_5t61m")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_25c7h")
-text = ">"
-
-[node name="goBackButton" type="Button" parent="MainMenu/SettingsContainer/Settings"]
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.631373, 0.631373, 0.631373, 1)
-theme_override_colors/font_hover_color = Color(0.631373, 0.631373, 0.631373, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_qj0yx")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_bfucv")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ikan2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kbssd")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_6s24c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kiw5u")
-text = "GO_BACK"
 
 [connection signal="pressed" from="MainMenu/TitleCard/MainOptions/playButton" to="." method="OnPlayPressed"]
 [connection signal="pressed" from="MainMenu/TitleCard/MainOptions/settingsButton" to="." method="OnSettingsPressed"]
@@ -359,9 +202,3 @@ text = "GO_BACK"
 [connection signal="pressed" from="MainMenu/SaveSlots/HBoxContainer/SaveSlot2" to="." method="OnSaveSlot2Pressed"]
 [connection signal="pressed" from="MainMenu/SaveSlots/HBoxContainer/SaveSlot3" to="." method="OnSaveSlot3Pressed"]
 [connection signal="pressed" from="MainMenu/SaveSlots/goBackButton" to="." method="OnGoBackPressed"]
-[connection signal="value_changed" from="MainMenu/SettingsContainer/Settings/MasterAudio/MaASlider" to="." method="OnMaASliderValueChanged"]
-[connection signal="value_changed" from="MainMenu/SettingsContainer/Settings/MusicAudio/MuASlider" to="." method="OnMuASliderValueChanged"]
-[connection signal="value_changed" from="MainMenu/SettingsContainer/Settings/VFXAudio/VASlider" to="." method="OnVASliderValueChanged"]
-[connection signal="pressed" from="MainMenu/SettingsContainer/Settings/Language/PreviousLanguage" to="." method="OnPreviousLanguagePressed"]
-[connection signal="pressed" from="MainMenu/SettingsContainer/Settings/Language/NextLanguage" to="." method="OnNextLanguagePressed"]
-[connection signal="pressed" from="MainMenu/SettingsContainer/Settings/goBackButton" to="." method="OnGoBackPressed"]
