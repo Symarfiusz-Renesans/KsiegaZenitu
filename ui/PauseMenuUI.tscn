@@ -109,3 +109,9 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_l2q7f")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_asbrp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_j6hje")
 text = "EXIT"
+
+[connection signal="onGoBackClicked" from="PauseMenu/SettingsContainer" to="." method="OnSettingsContainerOnGoBackClicked"]
+[connection signal="pressed" from="PauseMenu/MainOptionsContainer/VBoxContainer/ContinueButton" to="." method="OnContinueButtonPressed"]
+[connection signal="pressed" from="PauseMenu/MainOptionsContainer/VBoxContainer/SaveButton" to="." method="OnSaveButtonPressed"]
+[connection signal="pressed" from="PauseMenu/MainOptionsContainer/VBoxContainer/SettingsButton" to="." method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="PauseMenu/MainOptionsContainer/VBoxContainer/ExitButton" to="." method="OnExitButtonPressed"]

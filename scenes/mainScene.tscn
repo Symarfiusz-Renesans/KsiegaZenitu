@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhtkyhggap53a"]
+[gd_scene load_steps=8 format=3 uid="uid://bhtkyhggap53a"]
 
 [ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/mainScenePlanet/Sun.tscn" id="1_afxws"]
+[ext_resource type="PackedScene" uid="uid://drxir4x8afpqd" path="res://ui/PauseMenuUI.tscn" id="1_dskb5"]
 [ext_resource type="PackedScene" uid="uid://pmxy2dyubdkm" path="res://objects/mainScenePlanet/Earth.tscn" id="2_0d705"]
 [ext_resource type="Script" path="res://scenes/Camera3D.cs" id="3_6m3on"]
 [ext_resource type="PackedScene" uid="uid://bi3amadsebx2x" path="res://ui/OdczytMyszki.tscn" id="4_37h7y"]
@@ -8,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://xcu6mlall7ej" path="res://objects/tools/CoronaTrashBin.tscn" id="6_l20fs"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_37h7y")]
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("1_dskb5")]
 
 [node name="Sun" parent="." instance=ExtResource("1_afxws")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -50)
@@ -32,13 +37,11 @@ sky_mode = 1
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -50)
 sky_mode = 1
 
-[node name="CanvasLayer" parent="." instance=ExtResource("4_37h7y")]
-
 [node name="Space" parent="." instance=ExtResource("5_c2sve")]
 
 [node name="CoronaTrashBin" parent="." instance=ExtResource("6_l20fs")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -50)
 
+[connection signal="rotateCamera" from="CanvasLayer" to="Camera3D" method="OnRotateCamera"]
 [connection signal="TheSunWasClicked" from="Sun" to="CanvasLayer" method="OnTheSunWasClicked"]
 [connection signal="TheEarthWasClicked" from="Earth" to="CanvasLayer" method="OnTheEarthWasClicked"]
-[connection signal="rotateCamera" from="CanvasLayer" to="Camera3D" method="OnRotateCamera"]
