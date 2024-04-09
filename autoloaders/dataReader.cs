@@ -76,10 +76,8 @@ public partial class DataReader : Node{
 		foreach(KeyValuePair<string,string> entry in dataStorage){
 			if(inWhat == entry.Key){
 				text += entry.Key + ": " + toWhat +"\n";
-				GD.Print(text);
 			} else {
 				text += entry.Key + ": " + entry.Value+"\n";
-				GD.Print(text);
 			}
 		}
 

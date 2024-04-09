@@ -6,17 +6,22 @@ public partial class UI : CanvasLayer
 	[Signal] public delegate void rotateCameraEventHandler(float angle = 0);
 
 	DataReader dataReader;
-
+	//Loaded Nodes
 	MarginContainer GameplayInfo;
 	MarginContainer Shop;
 
 	Label informationAboutClicks;
 	Label informationAboutMoney;
+	Label informationAboutWarnings;
 
 	Timer AutomaticSave;
+	//Loaded variables
 	private int amountOfClicksOnTheSun = 0;
 	private int amountOfClicksOnTheEarth = 0;
 	private int amountOfMoney = 0;
+	private int amountOfTrashBagsToBeSent = 0;
+
+	//The angle of a screen
 	private float angle = 0;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
@@ -29,12 +34,16 @@ public partial class UI : CanvasLayer
 		
 		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["SunClicked"]);
 		amountOfClicksOnTheEarth = Int32.Parse(dataReader.ChosenSlot["EarthClicked"]);
-		//amountOfMoney = Int32.Parse(dataReader.ChosenSlot["money"]);
+		amountOfMoney = Int32.Parse(dataReader.ChosenSlot["Money"]);
+		amountOfTrashBagsToBeSent = Int32.Parse((dataReader.ChosenSlot["AmountOfTrashBags"]));
+
+		GD.Print(amountOfMoney);
 
 		informationAboutClicks = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Clicks");
 		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
 		informationAboutMoney = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Money");
-		informationAboutMoney.Text = "Money: "+amountOfMoney;
+		informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+		informationAboutWarnings = GetNode<Label>("HBoxContainer/InfoContainer/Warning");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,7 +91,6 @@ public partial class UI : CanvasLayer
 	}
 
 	private void OnTheEarthWasClicked(){
-		GD.Print(amountOfClicksOnTheEarth);
 		amountOfClicksOnTheEarth++;
 		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
 	}
@@ -114,5 +122,18 @@ public partial class UI : CanvasLayer
 	public void OnPauseMenuSaveProgress(){
 			dataReader.ChangeData("SunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
 			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
+	}
+
+	public string MoneySymbols(int Money){
+		const long thousand = 1000;
+		const long million = thousand*thousand;
+		const long billion = million*thousand;
+		const long trillion = billion*thousand;
+
+		if(Money/trillion >= 1) return (Money/thousand)+"T";
+		else if (Money/billion >= 1) return (Money/billion)+"B";
+		else if (Money/million >= 1) return (Money/billion)+"M";
+		else if(Money/thousand >= 1) return (Money/thousand)+"K";
+		else return (Money/thousand).ToString();
 	}
 }

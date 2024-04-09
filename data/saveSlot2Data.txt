@@ -1,3 +1,14 @@
-sunClicked: 0
+SunClicked: 0
 EarthClicked: 0
-money: 0
+AmountOfTrashBags: 0
+Money: 1000
+CostOfALaunch: 100
+ProfitOfATrashBag: 250
+CapacityOfARocket: 10
+PowerOfClick: 1
+AmountOfJeffs: 0
+SpeedOfJeffs: 10
+PowerOfJeff: 1
+AmountOfCoronaTrashBins: 0
+SpeedOfCTB: 10
+PowerOfCTB: 1
