@@ -105,5 +105,10 @@ layout_mode = 2
 texture_normal = ExtResource("3_am1m3")
 stretch_mode = 6
 
+[node name="AutomaticSave" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
 [connection signal="pressed" from="HBoxContainer/ToTheLeft" to="." method="OnToTheLeftInputEvent"]
 [connection signal="pressed" from="HBoxContainer/ToTheRight" to="." method="OnToTheRightInputEvent"]
+[connection signal="timeout" from="AutomaticSave" to="." method="OnAutomaticSaveTimeout"]

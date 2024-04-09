@@ -52,18 +52,22 @@ public partial class DataReader : Node{
 
 		switch(toWhichFile){
 			case FileTypes.General:{
+				GeneralDataStorage = ReadData(FileTypes.General); 
 				dataStorage = GeneralDataStorage;
 				break;
 			}
 			case FileTypes.SaveSlot1:{
+				Slot1DataStorage = ReadData(FileTypes.SaveSlot1);
 				dataStorage = Slot1DataStorage;
 				break;
 			}
 			case FileTypes.SaveSlot2:{
+				Slot2DataStorage = ReadData(FileTypes.SaveSlot2);
 				dataStorage = Slot2DataStorage;
 				break;
 			}
 			case FileTypes.SaveSlot3:{
+				Slot3DataStorage = ReadData(FileTypes.SaveSlot3);
 				dataStorage = Slot3DataStorage;
 				break;
 			}
@@ -72,8 +76,10 @@ public partial class DataReader : Node{
 		foreach(KeyValuePair<string,string> entry in dataStorage){
 			if(inWhat == entry.Key){
 				text += entry.Key + ": " + toWhat +"\n";
+				GD.Print(text);
 			} else {
 				text += entry.Key + ": " + entry.Value+"\n";
+				GD.Print(text);
 			}
 		}
 

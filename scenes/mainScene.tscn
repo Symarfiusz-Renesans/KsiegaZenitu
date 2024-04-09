@@ -43,6 +43,7 @@ sky_mode = 1
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -50)
 
 [connection signal="rotateCamera" from="MainUI" to="Camera3D" method="OnRotateCamera"]
+[connection signal="SaveProgress" from="PauseMenu" to="MainUI" method="OnPauseMenuSaveProgress"]
 [connection signal="TheSunWasClicked" from="Sun" to="MainUI" method="OnTheSunWasClicked"]
 [connection signal="TheEarthWasClicked" from="Earth" to="MainUI" method="OnTheEarthWasClicked"]
 [connection signal="TheAngleChanged" from="Camera3D" to="MainUI" method="OnCamerasAngleChanged"]

@@ -12,6 +12,8 @@ public partial class UI : CanvasLayer
 
 	Label informationAboutClicks;
 	Label informationAboutMoney;
+
+	Timer AutomaticSave;
 	private int amountOfClicksOnTheSun = 0;
 	private int amountOfClicksOnTheEarth = 0;
 	private int amountOfMoney = 0;
@@ -22,8 +24,10 @@ public partial class UI : CanvasLayer
 
 		GameplayInfo = GetNode<MarginContainer>("HBoxContainer/InfoContainer/GameplayInfo");
 		Shop = GetNode<MarginContainer>("HBoxContainer/InfoContainer/Shop");
+
+		AutomaticSave = GetNode<Timer>("AutomaticSave");
 		
-		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["sunClicked"]);
+		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["SunClicked"]);
 		amountOfClicksOnTheEarth = Int32.Parse(dataReader.ChosenSlot["EarthClicked"]);
 		//amountOfMoney = Int32.Parse(dataReader.ChosenSlot["money"]);
 
@@ -97,9 +101,18 @@ public partial class UI : CanvasLayer
 
 	public override void _Notification(int what){
     	if (what == NotificationWMCloseRequest){
-			dataReader.ChangeData("sunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
+			OnPauseMenuSaveProgress();
         	GetTree().Quit();
 		}
+	}
+
+	public void OnAutomaticSaveTimeout(){
+		OnPauseMenuSaveProgress();
+		GD.Print("zapisano!");
+	}
+
+	public void OnPauseMenuSaveProgress(){
+			dataReader.ChangeData("SunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
 	}
 }
