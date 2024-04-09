@@ -46,7 +46,7 @@ public partial class DataReader : Node{
 		dataFile.Close();
 	}
 
-	public void ChangeData(string what, string toWhat, FileTypes toWhichFile){
+	public void ChangeData(string inWhat, string toWhat, FileTypes toWhichFile){
 		string text = "";
 		Dictionary<string, string> dataStorage = null;
 
@@ -70,7 +70,7 @@ public partial class DataReader : Node{
 		}
 
 		foreach(KeyValuePair<string,string> entry in dataStorage){
-			if(what == entry.Key){
+			if(inWhat == entry.Key){
 				text += entry.Key + ": " + toWhat +"\n";
 			} else {
 				text += entry.Key + ": " + entry.Value+"\n";
