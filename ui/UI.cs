@@ -37,8 +37,6 @@ public partial class UI : CanvasLayer
 		amountOfMoney = Int32.Parse(dataReader.ChosenSlot["Money"]);
 		amountOfTrashBagsToBeSent = Int32.Parse((dataReader.ChosenSlot["AmountOfTrashBags"]));
 
-		GD.Print(amountOfMoney);
-
 		informationAboutClicks = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Clicks");
 		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
 		informationAboutMoney = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Money");
@@ -52,23 +50,27 @@ public partial class UI : CanvasLayer
 			case 0:{
 				GameplayInfo.Visible = false;
 				Shop.Visible = false;
+				informationAboutClicks.Visible = true;
 				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
 				break;
 			}
 			case 90:{
 				GameplayInfo.Visible = true;
 				Shop.Visible = false;
+				informationAboutClicks.Visible = false;
 				break;
 			}
 			case 180:{
 				GameplayInfo.Visible = false;
 				Shop.Visible = false;
+				informationAboutClicks.Visible = true;
 				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
 				break;
 			}
 			case 270:{
 				Shop.Visible = true;
 				GameplayInfo.Visible = false;
+				informationAboutClicks.Visible = false;
 				break;
 			}
 		}

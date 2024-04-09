@@ -1,5 +1,5 @@
-SunClicked: 28
-EarthClicked: 13
+SunClicked: 50
+EarthClicked: 50
 AmountOfTrashBags: 0
 Money: 1000
 CostOfALaunch: 100

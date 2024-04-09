@@ -7,4 +7,8 @@ EXIT;wyjdź;exit;Verlaß;esci
 GO_BACK;wróć;go back;zurück;ritorna
 SAVE;zapisz;save;schrieb auf;salva
 CONTINUE;graj dalej;continue;setze fort;continua
+TOOLS;Narzędzia;Tools;Werkzeuge;strumenti
+UPGRADES;ulepszenia;upgrades;Verbesserungen;miglioramenti
 LANGUAGE_CHOSEN_SUCCESSFULLY;Język pomyślnie ustawiony!;Language successfuly set!;Die Sprache wurde erfolgreich eingestellt!;La lingua è stata selezionata con successo!
+MONEY;Dutki;Money;Geld;soldi
+CLICKS;;;;
