@@ -1,4 +1,4 @@
 defaultLanguage: pl
-masterAudio: 0,25
+masterAudio: 0,95
 musicAudio: 0,50
 vfxAudio: 0,50

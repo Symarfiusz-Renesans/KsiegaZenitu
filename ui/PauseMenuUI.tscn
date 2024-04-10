@@ -55,8 +55,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_1p5uf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_l2q7f")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_asbrp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_j6hje")
-text = "CONTINUE
-"
+text = "CONTINUE"
 
 [node name="SaveButton" type="Button" parent="PauseMenu/MainOptionsContainer/VBoxContainer"]
 layout_mode = 2
