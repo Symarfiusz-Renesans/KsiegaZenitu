@@ -6,9 +6,11 @@ CostOfALaunch: 100
 ProfitOfATrashBag: 25
 CapacityOfARocket: 10
 PowerOfClick: 1
-AmountOfJeffs: 0
+Jeff: 1
+CostOfJ: 525
 SpeedOfJ: 10
 PowerOfJ: 1
-AmountOfCoronaTrashBins: 0
+CoronaTrashBin: 0
+CostOfCTB: 2000
 SpeedOfCTB: 10
 PowerOfCTB: 1

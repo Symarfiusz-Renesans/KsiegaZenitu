@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi3amadsebx2x"]
+[gd_scene load_steps=7 format=3 uid="uid://bi3amadsebx2x"]
 
 [ext_resource type="Script" path="res://ui/UI.cs" id="1_vbkl0"]
 [ext_resource type="Texture2D" uid="uid://gepo0emhfxe4" path="res://2dSprites/RotationButtonLeft.png" id="2_aarqp"]
 [ext_resource type="FontFile" uid="uid://cpl1e02scu4t1" path="res://fonts/Plasmatic.otf" id="3_6wmjm"]
 [ext_resource type="Texture2D" uid="uid://bh53a1xf2y8f2" path="res://2dSprites/rotationButtonRight.png" id="3_am1m3"]
 [ext_resource type="FontFile" uid="uid://cqgfvbf3y2wmh" path="res://fonts/Evil Empire.otf" id="3_bnggm"]
+[ext_resource type="PackedScene" uid="uid://dkaxg6p86vhcc" path="res://objects/UI/shopOffers.tscn" id="4_b5f8p"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_vbkl0")
@@ -100,6 +101,14 @@ theme_override_fonts/font = ExtResource("3_6wmjm")
 theme_override_font_sizes/font_size = 25
 text = "TOOLS"
 horizontal_alignment = 1
+
+[node name="MarginContainer" parent="HBoxContainer/InfoContainer/Shop/HBoxContainer/Tools" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+StorageName = "Jeff"
+StorageCostName = "CostOfJ"
+Type = "tool"
+Value = 1
+Action = "Every 10s sends a rocket automatically, but takes 10$ for each trashbag."
 
 [node name="Upgrades" type="VBoxContainer" parent="HBoxContainer/InfoContainer/Shop/HBoxContainer"]
 layout_mode = 2
