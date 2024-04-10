@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 public partial class UI : CanvasLayer
 {
@@ -18,8 +19,13 @@ public partial class UI : CanvasLayer
 	//Loaded variables
 	private int amountOfClicksOnTheSun = 0;
 	private int amountOfClicksOnTheEarth = 0;
-	private int amountOfMoney = 0;
+	private long amountOfMoney = 0;
 	private int amountOfTrashBagsToBeSent = 0;
+	private int ClicksPower = 1;
+	private int CostOfALaunch = 0;
+	private int ProfitOfATrashBag = 0;
+	private int CapacityOfARocket = 0;
+
 
 	//The angle of a screen
 	private float angle = 0;
@@ -34,8 +40,12 @@ public partial class UI : CanvasLayer
 		
 		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["SunClicked"]);
 		amountOfClicksOnTheEarth = Int32.Parse(dataReader.ChosenSlot["EarthClicked"]);
-		amountOfMoney = Int32.Parse(dataReader.ChosenSlot["Money"]);
+		amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
 		amountOfTrashBagsToBeSent = Int32.Parse((dataReader.ChosenSlot["AmountOfTrashBags"]));
+		ClicksPower = Int32.Parse((dataReader.ChosenSlot["PowerOfClick"]));
+		CostOfALaunch = Int32.Parse((dataReader.ChosenSlot["CostOfALaunch"]));
+		ProfitOfATrashBag = Int32.Parse((dataReader.ChosenSlot["ProfitOfATrashBag"]));
+		CapacityOfARocket = Int32.Parse((dataReader.ChosenSlot["CapacityOfARocket"]));
 
 		informationAboutClicks = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Clicks");
 		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
@@ -88,13 +98,38 @@ public partial class UI : CanvasLayer
 	}
 
 	private void OnTheSunWasClicked(){
-		amountOfClicksOnTheSun++;
-		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
+		if(amountOfTrashBagsToBeSent != 0){
+			amountOfClicksOnTheSun+= ClicksPower;
+			amountOfTrashBagsToBeSent -= ClicksPower;
+			amountOfMoney += ClicksPower*ProfitOfATrashBag;
+			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+			informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
+		} else {
+			SendWarning("You've already sent all launched trash! Launch more!");
+		}
 	}
 
 	private void OnTheEarthWasClicked(){
-		amountOfClicksOnTheEarth++;
-		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
+		if(amountOfMoney != 0){
+			amountOfClicksOnTheEarth+= ClicksPower;
+			amountOfTrashBagsToBeSent += ClicksPower*CapacityOfARocket;
+			amountOfMoney -= ClicksPower*CostOfALaunch;
+			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+			informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
+		} else {
+			SendWarning("You're broke! Burn some trash!");
+		}
+	}
+
+	private void SendWarning(string Message){
+		Timer WarningsTime = GetNode<Timer>("HBoxContainer/InfoContainer/Warning/WarningsTime");
+		WarningsTime.Start();
+		informationAboutWarnings.Visible = true;
+		informationAboutWarnings.Text = "You've already burnt all launched trash! Launch more!";
+	}
+	private void OnWarningsTimeTimeout(){
+		informationAboutWarnings.Visible = false;
+		informationAboutWarnings.Text = "";
 	}
 
 	private void OnToTheRightInputEvent(){
@@ -122,20 +157,29 @@ public partial class UI : CanvasLayer
 	}
 
 	public void OnPauseMenuSaveProgress(){
-			dataReader.ChangeData("SunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
+		ChangeVariables();
 	}
 
-	public string MoneySymbols(int Money){
-		const long thousand = 1000;
-		const long million = thousand*thousand;
-		const long billion = million*thousand;
-		const long trillion = billion*thousand;
+	public string MoneySymbols(long Money){
+		double MoneyToDouble = Convert.ToDouble(Money);
+		const double thousand = 1000;
+		const double million = thousand*thousand;
+		const double billion = million*thousand;
+		const double trillion = billion*thousand;
 
-		if(Money/trillion >= 1) return (Money/thousand)+"T";
-		else if (Money/billion >= 1) return (Money/billion)+"B";
-		else if (Money/million >= 1) return (Money/billion)+"M";
-		else if(Money/thousand >= 1) return (Money/thousand)+"K";
-		else return (Money/thousand).ToString();
+		if(Money/trillion >= 1) return (Money/trillion).ToString("0.00")+"T";
+		else if (Money/billion >= 1) return (Money/billion).ToString("0.00")+"B";
+		else if (Money/million >= 1) return (Money/million).ToString("0.00")+"M";
+		else if(Money/thousand >= 1) return (Money/thousand).ToString("0.00")+"K";
+		else return (Money/thousand).ToString("0.0");
+	}
+	public void ChangeVariables(){
+			dataReader.ChangeData("SunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("Money", amountOfMoney.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("AmountOfTrashBags", amountOfTrashBagsToBeSent.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("PowerOfClick", ClicksPower.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("CostOfALaunch", CostOfALaunch.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("ProfitOfATrashBag", ProfitOfATrashBag.ToString(), dataReader.ChosenSlotId);
 	}
 }

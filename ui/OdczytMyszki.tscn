@@ -65,9 +65,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 20.0
 theme_override_colors/font_color = Color(0.960784, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_6wmjm")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
+
+[node name="WarningsTime" type="Timer" parent="HBoxContainer/InfoContainer/Warning"]
+wait_time = 5.0
 
 [node name="Shop" type="MarginContainer" parent="HBoxContainer/InfoContainer"]
 layout_mode = 2
@@ -150,5 +155,6 @@ wait_time = 60.0
 autostart = true
 
 [connection signal="pressed" from="HBoxContainer/ToTheLeft" to="." method="OnToTheLeftInputEvent"]
+[connection signal="timeout" from="HBoxContainer/InfoContainer/Warning/WarningsTime" to="." method="OnWarningsTimeTimeout"]
 [connection signal="pressed" from="HBoxContainer/ToTheRight" to="." method="OnToTheRightInputEvent"]
 [connection signal="timeout" from="AutomaticSave" to="." method="OnAutomaticSaveTimeout"]
