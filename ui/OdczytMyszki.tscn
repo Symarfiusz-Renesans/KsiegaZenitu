@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi3amadsebx2x"]
+[gd_scene load_steps=9 format=3 uid="uid://bi3amadsebx2x"]
 
 [ext_resource type="Script" path="res://ui/UI.cs" id="1_vbkl0"]
 [ext_resource type="Texture2D" uid="uid://gepo0emhfxe4" path="res://2dSprites/RotationButtonLeft.png" id="2_aarqp"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cqgfvbf3y2wmh" path="res://fonts/Evil Empire.otf" id="3_bnggm"]
 [ext_resource type="PackedScene" uid="uid://dkaxg6p86vhcc" path="res://objects/UI/shopOffers.tscn" id="4_b5f8p"]
 [ext_resource type="Texture2D" uid="uid://4cntofi7de1k" path="res://2dSprites/Jeff.png" id="5_cpw2a"]
+[ext_resource type="Texture2D" uid="uid://tlmnf5acthub" path="res://2dSprites/CoronaTrashBinPhoto.png" id="6_sqtm3"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_vbkl0")
@@ -112,7 +113,7 @@ layout_mode = 2
 StorageName = "Jeff"
 StorageCostName = "CostOfJ"
 Type = "tool"
-Action = "Every 10s sends a rocket automatically, but takes 10$ for each trashbag."
+Action = "Every 10s sends a rocket automatically."
 Image = ExtResource("5_cpw2a")
 
 [node name="CoronaTrashBin" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools" instance=ExtResource("4_b5f8p")]
@@ -122,7 +123,7 @@ StorageName = "CoronaTrashBin"
 StorageCostName = "CostOfCTB"
 Type = "tool"
 Action = "Every 10s throws 1 trashbag into the Great Photospheric Waste Incinerator automatically."
-Image = ExtResource("5_cpw2a")
+Image = ExtResource("6_sqtm3")
 
 [node name="Upgrades" type="VBoxContainer" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer"]
 layout_mode = 2
@@ -142,15 +143,19 @@ StorageName = "DoubleClickButton"
 StorageCostName = "CostOfDBC"
 Type = "upgrade"
 Action = "Every manual click on either Sun or Earth doubles effect."
+Value = 2
+UpgradedValue = "PowerOfManualClick"
 Image = ExtResource("5_cpw2a")
 
 [node name="CheaperRocketProduction" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
 ProductsName = "Cheaper Rocket Production"
 StorageName = "CheaperRocketProduction"
-StorageCostName = "CostOfCTB"
+StorageCostName = "CostOfCRP"
 Type = "upgrade"
-Action = "Every 10s throws 1 trashbag into the Great Photospheric Waste Incinerator automatically."
+Action = "Rocket will cost 40% less."
+Value = 300
+UpgradedValue = "CostOfALaunch"
 Image = ExtResource("5_cpw2a")
 
 [node name="CrunchCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
@@ -160,6 +165,7 @@ StorageName = "CrunchCulture"
 StorageCostName = "CostOfCC"
 Type = "upgrade"
 Action = "Jeffs will send out rockets every 7.5s."
+Value = 7
 Image = ExtResource("5_cpw2a")
 
 [node name="CoronaBurstThrowing" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
@@ -169,6 +175,8 @@ StorageName = "CoronaBurstThrowing"
 StorageCostName = "CostOfCBT"
 Type = "upgrade"
 Action = "Corona Trash Bins will send 3 trashbags every 10s."
+Value = 3
+UpgradedValue = "PowerOfCTB"
 Image = ExtResource("5_cpw2a")
 
 [node name="MoreCapaciousRockets" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
@@ -178,6 +186,8 @@ StorageName = "MoreCapaciousRockets"
 StorageCostName = "CostOfMCR"
 Type = "upgrade"
 Action = "Rockets will be able to contain 50 trashbags."
+Value = 500
+UpgradedValue = "CapacityOfARocket"
 Image = ExtResource("5_cpw2a")
 
 [node name="DoubleClickCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
@@ -187,6 +197,8 @@ StorageName = "DoubleClickCulture"
 StorageCostName = "CostOfDCC"
 Type = "upgrade"
 Action = "Every automatical click on either Sun or Earth doubles effect."
+Value = 2
+UpgradedValue = "PowerOfAutomaticalClick"
 Image = ExtResource("5_cpw2a")
 
 [node name="GameplayInfo" type="MarginContainer" parent="HBoxContainer/InfoContainer"]
@@ -231,9 +243,9 @@ stretch_mode = 6
 wait_time = 60.0
 autostart = true
 
-[node name="Container" type="Container" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Jeffs" type="Node" parent="."]
+
+[node name="CoronaTrashBins" type="Node" parent="."]
 
 [connection signal="pressed" from="HBoxContainer/ToTheLeft" to="." method="OnToTheLeftInputEvent"]
 [connection signal="timeout" from="HBoxContainer/InfoContainer/Warning/WarningsTime" to="." method="OnWarningsTimeTimeout"]

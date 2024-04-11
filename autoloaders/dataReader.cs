@@ -26,7 +26,7 @@ public partial class DataReader : Node{
 		Slot3DataStorage = ReadData(FileTypes.SaveSlot3);
 	}
 
-	private Dictionary<string, string> ReadData(FileTypes fileType){
+	public Dictionary<string, string> ReadData(FileTypes fileType){
 		Dictionary<string, string> dataStorage = new Dictionary<string, string>();
 		ConnectFile(fileType, FileAccess.ModeFlags.Read);
 		

@@ -3,9 +3,10 @@ EarthClicked: 35
 AmountOfTrashBags: 0
 Money: 6250
 CostOfALaunch: 500
-ProfitOfATrashBag: 25
+ProfitOfATrashBag: 250
 CapacityOfARocket: 10
-PowerOfClick: 1
+PowerOfManualClick: 1
+PowerOfAutomaticalClick: 1
 Jeff: 0
 CostOfJ: 500
 SpeedOfJ: 10

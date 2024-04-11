@@ -9,12 +9,14 @@ public partial class shopOfferUI : MarginContainer{
 	[Export] private string StorageCostName;
 	[Export] private string Type;
 	[Export] private string Action;
+	[Export] private int Value;
+	[Export] private string UpgradedValue;
 	[Export] private CompressedTexture2D Image;
 
 	DataReader dataReader;
 	int amountOfThings = 0;
 	int costOfThing = 0;
-
+	long Money = 0;
 	private Label NameLabel;
 	private Label CostLabel;
 	private RichTextLabel ActionLabel;
@@ -38,7 +40,7 @@ public partial class shopOfferUI : MarginContainer{
 
 			NameLabel.Text = ProductsName;
 			ActionLabel.Text = Action;
-			CostLabel.Text = costOfThing.ToString();
+			CostLabel.Text = MoneySymbols(costOfThing).ToString();
 			textureRect.Texture = Image;
 			if(Type == "tool") NumberOfOwned.Text = amountOfThings.ToString();
 			else NumberOfOwned.Text = "";
@@ -46,14 +48,19 @@ public partial class shopOfferUI : MarginContainer{
 	}
 
 	public void OnPessed(){
-		if(Int32.Parse(dataReader.ChosenSlot["Money"]) >= costOfThing){
-			dataReader.ChangeData(StorageName, (amountOfThings + 1).ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("Money", (Int32.Parse(dataReader.ChosenSlot["Money"])-costOfThing).ToString(), dataReader.ChosenSlotId);
+		if(Money >= costOfThing){
+			dataReader.ChangeData("Money", (Money-costOfThing).ToString(), dataReader.ChosenSlotId);
 			if(Type == "tool"){
+				dataReader.ChangeData(StorageName, (amountOfThings + 1).ToString(), dataReader.ChosenSlotId);
 				NumberOfOwned.Text = (amountOfThings + 1).ToString();
 				dataReader.ChangeData(StorageCostName, (costOfThing+costOfThing/20).ToString(), dataReader.ChosenSlotId);
-				CostLabel.Text = costOfThing+costOfThing/20 + "$";
-			} else Visible = false;
+				CostLabel.Text = MoneySymbols(costOfThing+costOfThing/20).ToString();
+			} else {
+				Visible = false;
+				dataReader.ChangeData(StorageName, 1.ToString(), dataReader.ChosenSlotId);
+				dataReader.ChangeData(UpgradedValue, Value.ToString(), dataReader.ChosenSlotId);
+			}
+			dataReader.ChosenSlot = dataReader.ReadData(dataReader.ChosenSlotId);
 			ReloadVariables();
 			EmitSignal(SignalName.OnThingBought, true);
 		} else {
@@ -64,5 +71,19 @@ public partial class shopOfferUI : MarginContainer{
 	public void ReloadVariables(){
 		costOfThing = Int32.Parse(dataReader.ChosenSlot[StorageCostName]);
 		amountOfThings = Int32.Parse(dataReader.ChosenSlot[StorageName]);
+		Money = long.Parse(dataReader.ChosenSlot["Money"]);
+	}
+
+	public string MoneySymbols(long Money){
+		const double thousand = 1000;
+		const double million = thousand*thousand;
+		const double billion = million*thousand;
+		const double trillion = billion*thousand;
+
+		if(Money/trillion >= 1) return (Money/trillion).ToString("0.00")+"T";
+		else if (Money/billion >= 1) return (Money/billion).ToString("0.00")+"B";
+		else if (Money/million >= 1) return (Money/million).ToString("0.00")+"M";
+		else if(Money/thousand >= 1) return (Money/thousand).ToString("0.00")+"K";
+		else return (Money/thousand).ToString("0.0");
 	}
 }

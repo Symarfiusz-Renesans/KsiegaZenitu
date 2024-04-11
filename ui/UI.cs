@@ -21,7 +21,8 @@ public partial class UI : CanvasLayer
 	private int amountOfClicksOnTheEarth = 0;
 	private long amountOfMoney = 0;
 	private int amountOfTrashBagsToBeSent = 0;
-	private int ClicksPower = 1;
+	private int ManualClicksPower = 1;
+	private int AutomaticalClicksPower = 1;
 	private int CostOfALaunch = 0;
 	private int ProfitOfATrashBag = 0;
 	private int CapacityOfARocket = 0;
@@ -38,14 +39,7 @@ public partial class UI : CanvasLayer
 
 		AutomaticSave = GetNode<Timer>("AutomaticSave");
 		
-		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["SunClicked"]);
-		amountOfClicksOnTheEarth = Int32.Parse(dataReader.ChosenSlot["EarthClicked"]);
-		amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
-		amountOfTrashBagsToBeSent = Int32.Parse(dataReader.ChosenSlot["AmountOfTrashBags"]);
-		ClicksPower = Int32.Parse(dataReader.ChosenSlot["PowerOfClick"]);
-		CostOfALaunch = Int32.Parse(dataReader.ChosenSlot["CostOfALaunch"]);
-		ProfitOfATrashBag = Int32.Parse(dataReader.ChosenSlot["ProfitOfATrashBag"]);
-		CapacityOfARocket = Int32.Parse(dataReader.ChosenSlot["CapacityOfARocket"]);
+		ReloadVariables();
 
 		informationAboutClicks = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Clicks");
 		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
@@ -99,9 +93,9 @@ public partial class UI : CanvasLayer
 
 	private void OnTheSunWasClicked(){
 		if(amountOfTrashBagsToBeSent != 0){
-			amountOfClicksOnTheSun+= ClicksPower;
-			amountOfTrashBagsToBeSent -= ClicksPower;
-			amountOfMoney += ClicksPower*ProfitOfATrashBag;
+			amountOfClicksOnTheSun+= ManualClicksPower;
+			amountOfTrashBagsToBeSent -= ManualClicksPower;
+			amountOfMoney += ManualClicksPower*ProfitOfATrashBag;
 			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
 			informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
 		} else {
@@ -111,9 +105,9 @@ public partial class UI : CanvasLayer
 
 	private void OnTheEarthWasClicked(){
 		if(amountOfMoney != 0){
-			amountOfClicksOnTheEarth+= ClicksPower;
-			amountOfTrashBagsToBeSent += ClicksPower*CapacityOfARocket;
-			amountOfMoney -= ClicksPower*CostOfALaunch;
+			amountOfClicksOnTheEarth+= ManualClicksPower;
+			amountOfTrashBagsToBeSent += ManualClicksPower*CapacityOfARocket;
+			amountOfMoney -= ManualClicksPower*CostOfALaunch;
 			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
 			informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
 		} else {
@@ -177,14 +171,29 @@ public partial class UI : CanvasLayer
 			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
 			dataReader.ChangeData("Money", amountOfMoney.ToString(), dataReader.ChosenSlotId);
 			dataReader.ChangeData("AmountOfTrashBags", amountOfTrashBagsToBeSent.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("PowerOfClick", ClicksPower.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("PowerOfManualClick", ManualClicksPower.ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("PowerOfAutomaticalClick", AutomaticalClicksPower.ToString(), dataReader.ChosenSlotId);
 			dataReader.ChangeData("CostOfALaunch", CostOfALaunch.ToString(), dataReader.ChosenSlotId);
 			dataReader.ChangeData("ProfitOfATrashBag", ProfitOfATrashBag.ToString(), dataReader.ChosenSlotId);
+	}
+	public void ReloadVariables(){
+		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["SunClicked"]);
+		amountOfClicksOnTheEarth = Int32.Parse(dataReader.ChosenSlot["EarthClicked"]);
+		amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
+		amountOfTrashBagsToBeSent = Int32.Parse(dataReader.ChosenSlot["AmountOfTrashBags"]);
+		GD.Print(Int32.Parse(dataReader.ChosenSlot["PowerOfManualClick"]));
+		ManualClicksPower = Int32.Parse(dataReader.ChosenSlot["PowerOfManualClick"]);
+		AutomaticalClicksPower = Int32.Parse(dataReader.ChosenSlot["PowerOfAutomaticalClick"]);
+		CostOfALaunch = Int32.Parse(dataReader.ChosenSlot["CostOfALaunch"]);
+		ProfitOfATrashBag = Int32.Parse(dataReader.ChosenSlot["ProfitOfATrashBag"]);
+		CapacityOfARocket = Int32.Parse(dataReader.ChosenSlot["CapacityOfARocket"]);
 	}
 	public void OnThingBought(bool wasBought){
 		if(wasBought){		
 			amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
 			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+			GD.Print(Int32.Parse(dataReader.ChosenSlot["PowerOfManualClick"]));
+			ReloadVariables();
 		} else {
 			SendWarning("You don't have enough money!");
 		}
