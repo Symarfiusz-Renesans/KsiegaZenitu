@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi3amadsebx2x"]
+[gd_scene load_steps=8 format=3 uid="uid://bi3amadsebx2x"]
 
 [ext_resource type="Script" path="res://ui/UI.cs" id="1_vbkl0"]
 [ext_resource type="Texture2D" uid="uid://gepo0emhfxe4" path="res://2dSprites/RotationButtonLeft.png" id="2_aarqp"]
@@ -6,12 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://bh53a1xf2y8f2" path="res://2dSprites/rotationButtonRight.png" id="3_am1m3"]
 [ext_resource type="FontFile" uid="uid://cqgfvbf3y2wmh" path="res://fonts/Evil Empire.otf" id="3_bnggm"]
 [ext_resource type="PackedScene" uid="uid://dkaxg6p86vhcc" path="res://objects/UI/shopOffers.tscn" id="4_b5f8p"]
+[ext_resource type="Texture2D" uid="uid://4cntofi7de1k" path="res://2dSprites/Jeff.png" id="5_cpw2a"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_vbkl0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_direction = 2
+layout_direction = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -77,49 +78,116 @@ wait_time = 5.0
 
 [node name="Shop" type="MarginContainer" parent="HBoxContainer/InfoContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 70
+theme_override_constants/margin_bottom = 15
 
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer/InfoContainer/Shop"]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 color = Color(0.309804, 0.309804, 0.309804, 0.803922)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/InfoContainer/Shop"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/InfoContainer/Shop"]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
-[node name="Tools" type="VBoxContainer" parent="HBoxContainer/InfoContainer/Shop/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/InfoContainer/Shop/HBoxContainer/Tools"]
+[node name="Tools" type="VBoxContainer" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6wmjm")
 theme_override_font_sizes/font_size = 25
 text = "TOOLS"
 horizontal_alignment = 1
 
-[node name="MarginContainer" parent="HBoxContainer/InfoContainer/Shop/HBoxContainer/Tools" instance=ExtResource("4_b5f8p")]
+[node name="Jeff" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
 StorageName = "Jeff"
 StorageCostName = "CostOfJ"
 Type = "tool"
-Value = 1
 Action = "Every 10s sends a rocket automatically, but takes 10$ for each trashbag."
+Image = ExtResource("5_cpw2a")
 
-[node name="Upgrades" type="VBoxContainer" parent="HBoxContainer/InfoContainer/Shop/HBoxContainer"]
+[node name="CoronaTrashBin" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+ProductsName = "Corona Trash Bin"
+StorageName = "CoronaTrashBin"
+StorageCostName = "CostOfCTB"
+Type = "tool"
+Action = "Every 10s throws 1 trashbag into the Great Photospheric Waste Incinerator automatically."
+Image = ExtResource("5_cpw2a")
+
+[node name="Upgrades" type="VBoxContainer" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/InfoContainer/Shop/HBoxContainer/Upgrades"]
+[node name="Label" type="Label" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6wmjm")
 theme_override_font_sizes/font_size = 25
 text = "UPGRADES"
 horizontal_alignment = 1
+
+[node name="DoubleClickButton" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+ProductsName = "Double Click Button"
+StorageName = "DoubleClickButton"
+StorageCostName = "CostOfDBC"
+Type = "upgrade"
+Action = "Every manual click on either Sun or Earth doubles effect."
+Image = ExtResource("5_cpw2a")
+
+[node name="CheaperRocketProduction" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+ProductsName = "Cheaper Rocket Production"
+StorageName = "CheaperRocketProduction"
+StorageCostName = "CostOfCTB"
+Type = "upgrade"
+Action = "Every 10s throws 1 trashbag into the Great Photospheric Waste Incinerator automatically."
+Image = ExtResource("5_cpw2a")
+
+[node name="CrunchCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+ProductsName = "Crunch Culture"
+StorageName = "CrunchCulture"
+StorageCostName = "CostOfCC"
+Type = "upgrade"
+Action = "Jeffs will send out rockets every 7.5s."
+Image = ExtResource("5_cpw2a")
+
+[node name="CoronaBurstThrowing" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+ProductsName = "Corona Burst Throwing"
+StorageName = "CoronaBurstThrowing"
+StorageCostName = "CostOfCBT"
+Type = "upgrade"
+Action = "Corona Trash Bins will send 3 trashbags every 10s."
+Image = ExtResource("5_cpw2a")
+
+[node name="MoreCapaciousRockets" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+ProductsName = "More Capacious Rockets"
+StorageName = "MoreCapaciousRockets"
+StorageCostName = "CostOfMCR"
+Type = "upgrade"
+Action = "Rockets will be able to contain 50 trashbags."
+Image = ExtResource("5_cpw2a")
+
+[node name="DoubleClickCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
+layout_mode = 2
+ProductsName = "Double Click Culture"
+StorageName = "DoubleClickCulture"
+StorageCostName = "CostOfDCC"
+Type = "upgrade"
+Action = "Every automatical click on either Sun or Earth doubles effect."
+Image = ExtResource("5_cpw2a")
 
 [node name="GameplayInfo" type="MarginContainer" parent="HBoxContainer/InfoContainer"]
 visible = false
@@ -163,7 +231,19 @@ stretch_mode = 6
 wait_time = 60.0
 autostart = true
 
+[node name="Container" type="Container" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="HBoxContainer/ToTheLeft" to="." method="OnToTheLeftInputEvent"]
 [connection signal="timeout" from="HBoxContainer/InfoContainer/Warning/WarningsTime" to="." method="OnWarningsTimeTimeout"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools/Jeff" to="." method="OnThingBought"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools/CoronaTrashBin" to="." method="OnThingBought"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/DoubleClickButton" to="." method="OnThingBought"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CheaperRocketProduction" to="." method="OnThingBought"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CrunchCulture" to="." method="OnThingBought"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CoronaBurstThrowing" to="." method="OnThingBought"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/MoreCapaciousRockets" to="." method="OnThingBought"]
+[connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/DoubleClickCulture" to="." method="OnThingBought"]
 [connection signal="pressed" from="HBoxContainer/ToTheRight" to="." method="OnToTheRightInputEvent"]
 [connection signal="timeout" from="AutomaticSave" to="." method="OnAutomaticSaveTimeout"]

@@ -2,17 +2,18 @@ using Godot;
 using System;
 
 public partial class shopOfferUI : MarginContainer{
-	[Signal] public delegate void OnThingBoughtEventHandler();
+	[Signal] public delegate void OnThingBoughtEventHandler(bool wasBought);
 
 	[Export] private string ProductsName;
 	[Export] private string StorageName;
 	[Export] private string StorageCostName;
 	[Export] private string Type;
-	[Export] private int Value;
 	[Export] private string Action;
-	[Export] private Image Image;
+	[Export] private CompressedTexture2D Image;
 
 	DataReader dataReader;
+	int amountOfThings = 0;
+	int costOfThing = 0;
 
 	private Label NameLabel;
 	private Label CostLabel;
@@ -23,32 +24,45 @@ public partial class shopOfferUI : MarginContainer{
 	public override void _Ready(){
 		dataReader = (DataReader)GetNode("/root/DataReader");
 
-		NameLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Name");
-		CostLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Cost");
-		ActionLabel = GetNode<RichTextLabel>("HBoxContainer/VBoxContainer/Action");
-		colorRect = GetNode<ColorRect>("ColorRect");
-		NumberOfOwned = GetNode<Label>("HBoxContainer/Number");
-		textureRect = GetNode<TextureRect>("HBoxContainer/TextureRect");
+		ReloadVariables(); 
 
-		NameLabel.Text = ProductsName;
-		ActionLabel.Text = Action;
-		CostLabel.Text = dataReader.ChosenSlot[StorageCostName];
-		if(Type == "tool") NumberOfOwned.Text = dataReader.ChosenSlot[StorageName];
-		else NumberOfOwned.Text = "";
+		if(Type == "upgrade" && amountOfThings == 1){
+			Visible = false;
+		} else {
+			NameLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Name");
+			CostLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Cost");
+			ActionLabel = GetNode<RichTextLabel>("HBoxContainer/VBoxContainer/Action");
+			colorRect = GetNode<ColorRect>("ColorRect");
+			NumberOfOwned = GetNode<Label>("HBoxContainer/Number");
+			textureRect = GetNode<TextureRect>("HBoxContainer/TextureRect");
+
+			NameLabel.Text = ProductsName;
+			ActionLabel.Text = Action;
+			CostLabel.Text = costOfThing.ToString();
+			textureRect.Texture = Image;
+			if(Type == "tool") NumberOfOwned.Text = amountOfThings.ToString();
+			else NumberOfOwned.Text = "";
+		}
 	}
 
 	public void OnPessed(){
-		int amountOfThings = Int32.Parse(dataReader.ChosenSlot[StorageName]);
-		int costOfThing = Int32.Parse(dataReader.ChosenSlot[StorageCostName]);
+		if(Int32.Parse(dataReader.ChosenSlot["Money"]) >= costOfThing){
+			dataReader.ChangeData(StorageName, (amountOfThings + 1).ToString(), dataReader.ChosenSlotId);
+			dataReader.ChangeData("Money", (Int32.Parse(dataReader.ChosenSlot["Money"])-costOfThing).ToString(), dataReader.ChosenSlotId);
+			if(Type == "tool"){
+				NumberOfOwned.Text = (amountOfThings + 1).ToString();
+				dataReader.ChangeData(StorageCostName, (costOfThing+costOfThing/20).ToString(), dataReader.ChosenSlotId);
+				CostLabel.Text = costOfThing+costOfThing/20 + "$";
+			} else Visible = false;
+			ReloadVariables();
+			EmitSignal(SignalName.OnThingBought, true);
+		} else {
+			EmitSignal(SignalName.OnThingBought, false);
+		}
+	}
 
-		EmitSignal(SignalName.OnThingBought);
-		dataReader.ChangeData(StorageName, (amountOfThings + Value).ToString(), dataReader.ChosenSlotId);
-		dataReader.ChangeData("Money", (Int32.Parse(dataReader.ChosenSlot[StorageCostName])-costOfThing).ToString(), dataReader.ChosenSlotId);
-		if(Type == "tool"){
-			GD.Print("klil");
-			NumberOfOwned.Text = (amountOfThings + Value).ToString();
-			dataReader.ChangeData(StorageCostName, (costOfThing+costOfThing/20).ToString(), dataReader.ChosenSlotId);
-			CostLabel.Text = costOfThing+costOfThing/20 + "$";
-		} else Visible = false;
+	public void ReloadVariables(){
+		costOfThing = Int32.Parse(dataReader.ChosenSlot[StorageCostName]);
+		amountOfThings = Int32.Parse(dataReader.ChosenSlot[StorageName]);
 	}
 }

@@ -83,7 +83,7 @@ public partial class DataReader : Node{
 
 		ConnectFile(toWhichFile, FileAccess.ModeFlags.Write);
 		SaveData(text);
-		ReadData(toWhichFile);
+		ChosenSlot = ReadData(toWhichFile);
 	}
 
 	void ConnectFile(FileTypes toWhichFile, FileAccess.ModeFlags action){

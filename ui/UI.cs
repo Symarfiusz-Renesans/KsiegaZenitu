@@ -41,11 +41,11 @@ public partial class UI : CanvasLayer
 		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["SunClicked"]);
 		amountOfClicksOnTheEarth = Int32.Parse(dataReader.ChosenSlot["EarthClicked"]);
 		amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
-		amountOfTrashBagsToBeSent = Int32.Parse((dataReader.ChosenSlot["AmountOfTrashBags"]));
-		ClicksPower = Int32.Parse((dataReader.ChosenSlot["PowerOfClick"]));
-		CostOfALaunch = Int32.Parse((dataReader.ChosenSlot["CostOfALaunch"]));
-		ProfitOfATrashBag = Int32.Parse((dataReader.ChosenSlot["ProfitOfATrashBag"]));
-		CapacityOfARocket = Int32.Parse((dataReader.ChosenSlot["CapacityOfARocket"]));
+		amountOfTrashBagsToBeSent = Int32.Parse(dataReader.ChosenSlot["AmountOfTrashBags"]);
+		ClicksPower = Int32.Parse(dataReader.ChosenSlot["PowerOfClick"]);
+		CostOfALaunch = Int32.Parse(dataReader.ChosenSlot["CostOfALaunch"]);
+		ProfitOfATrashBag = Int32.Parse(dataReader.ChosenSlot["ProfitOfATrashBag"]);
+		CapacityOfARocket = Int32.Parse(dataReader.ChosenSlot["CapacityOfARocket"]);
 
 		informationAboutClicks = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Clicks");
 		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
@@ -161,7 +161,6 @@ public partial class UI : CanvasLayer
 	}
 
 	public string MoneySymbols(long Money){
-		double MoneyToDouble = Convert.ToDouble(Money);
 		const double thousand = 1000;
 		const double million = thousand*thousand;
 		const double billion = million*thousand;
@@ -181,5 +180,13 @@ public partial class UI : CanvasLayer
 			dataReader.ChangeData("PowerOfClick", ClicksPower.ToString(), dataReader.ChosenSlotId);
 			dataReader.ChangeData("CostOfALaunch", CostOfALaunch.ToString(), dataReader.ChosenSlotId);
 			dataReader.ChangeData("ProfitOfATrashBag", ProfitOfATrashBag.ToString(), dataReader.ChosenSlotId);
+	}
+	public void OnThingBought(bool wasBought){
+		if(wasBought){		
+			amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
+			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+		} else {
+			SendWarning("You don't have enough money!");
+		}
 	}
 }
