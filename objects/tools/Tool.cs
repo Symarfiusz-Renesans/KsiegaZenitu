@@ -3,8 +3,8 @@ using System;
 
 public partial class Tool : Node
 {
-	[Signal] public delegate void SunIsClickedAutomaticlyEventHandler();
-	[Signal] public delegate void EarthIsClickedAutomaticlyEventHandler();
+	[Signal] public delegate void SunIsClickedAutomaticlyEventHandler(int power);
+	[Signal] public delegate void EarthIsClickedAutomaticlyEventHandler(int power);
 	DataReader dataReader;
 	[Export] string ToolsName;
 	[Export] string ToolsSpeedName;
@@ -14,6 +14,7 @@ public partial class Tool : Node
 	private int amountOfTools = 0;
 	private int speedOfTools = 10;
 	private int powerOfTools = 1;
+	private int powerOfAutomaticalClick = 1;
 	public override void _Ready(){
 		dataReader = GetNode<DataReader>("/root/DataReader");
 
@@ -27,6 +28,7 @@ public partial class Tool : Node
 		amountOfTools = Int32.Parse(dataReader.ChosenSlot[ToolsName]);
 		speedOfTools = Int32.Parse(dataReader.ChosenSlot[ToolsSpeedName]);
 		powerOfTools = Int32.Parse(dataReader.ChosenSlot[ToolsPowerName]);
+		powerOfAutomaticalClick = Int32.Parse(dataReader.ChosenSlot["PowerOfAutomaticalClick"]);
 	}
 
 	private void CreateTimers(){
@@ -51,9 +53,15 @@ public partial class Tool : Node
 	}
 
 	private void OnTimerTimeout(){
+		int amountOfClicks = powerOfTools * powerOfAutomaticalClick;
+		
 		switch(ToolsLocation){
 			case "Sun":{
-				EmitSignal(SignalName.SunIsClickedAutomaticly);
+				EmitSignal(SignalName.SunIsClickedAutomaticly, amountOfClicks);
+				break;
+			}
+			case "Earth":{
+				EmitSignal(SignalName.EarthIsClickedAutomaticly, amountOfClicks);
 				break;
 			}
 		}
@@ -61,8 +69,8 @@ public partial class Tool : Node
 	}
 
 	private void OnReloadTools(string Name){
+		GD.Print("odebrano");
 		if(Name == ToolsName){
-			GD.Print("odebrano");
 			ReloadVariables();
 			DeleteTimers();
 			CreateTimers();

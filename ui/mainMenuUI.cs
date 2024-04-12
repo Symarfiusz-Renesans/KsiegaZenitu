@@ -43,11 +43,11 @@ public partial class MainMenuUI : CanvasLayer
 		toTheMainScene();
 	}
 	public void OnSaveSlot2Pressed(){
-		dataReader.ChooseSlot(DataReader.FileTypes.SaveSlot1);
+		dataReader.ChooseSlot(DataReader.FileTypes.SaveSlot2);
 		toTheMainScene();
 	}
 	public void OnSaveSlot3Pressed(){
-		dataReader.ChooseSlot(DataReader.FileTypes.SaveSlot1);
+		dataReader.ChooseSlot(DataReader.FileTypes.SaveSlot3);
 		toTheMainScene();
 	}
 	public void toTheMainScene(){

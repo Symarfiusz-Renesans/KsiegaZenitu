@@ -271,3 +271,7 @@ ToolsLocation = "Earth"
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/DoubleClickCulture" to="." method="OnThingBought"]
 [connection signal="pressed" from="HBoxContainer/ToTheRight" to="." method="OnToTheRightInputEvent"]
 [connection signal="timeout" from="AutomaticSave" to="." method="OnAutomaticSaveTimeout"]
+[connection signal="EarthIsClickedAutomaticly" from="CoronaTrashBins" to="." method="OnEarthIsClickedAutomaticly"]
+[connection signal="SunIsClickedAutomaticly" from="CoronaTrashBins" to="." method="OnSunIsClickedAutomaticly"]
+[connection signal="EarthIsClickedAutomaticly" from="Jeffs" to="." method="OnEarthIsClickedAutomaticly"]
+[connection signal="SunIsClickedAutomaticly" from="Jeffs" to="." method="OnSunIsClickedAutomaticly"]

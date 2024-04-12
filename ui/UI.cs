@@ -94,26 +94,68 @@ public partial class UI : CanvasLayer
 	}
 
 	private void OnTheSunWasClicked(){
-		if(amountOfTrashBagsToBeSent >= 0){
-			amountOfClicksOnTheSun+= ManualClicksPower;
-			amountOfTrashBagsToBeSent -= ManualClicksPower;
-			amountOfMoney += ManualClicksPower*ProfitOfATrashBag;
-			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
-			informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
-		} else {
+		bool actionSuccessful = false;
+		for(int i = ManualClicksPower; i > 0; i--){
+			if(amountOfTrashBagsToBeSent >= i && !actionSuccessful){
+				amountOfClicksOnTheSun+= i;
+				amountOfTrashBagsToBeSent -= i;
+				amountOfMoney += i*ProfitOfATrashBag;
+				informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
+				actionSuccessful = true;
+			} else {
+				break;
+			}
+		}
+		if(!actionSuccessful){
 			SendWarning("You've already sent all launched trash! Launch more!");
 		}
 	}
 
 	private void OnTheEarthWasClicked(){
-		if(amountOfMoney - ManualClicksPower*CostOfALaunch >= 0){
-			amountOfClicksOnTheEarth+= ManualClicksPower;
-			amountOfTrashBagsToBeSent += ManualClicksPower*CapacityOfARocket;
-			amountOfMoney -= ManualClicksPower*CostOfALaunch;
-			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
-			informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
-		} else {
-			SendWarning("You're broke! Burn some trash!");
+		bool actionSuccessful = false;
+		for(int i = ManualClicksPower; i > 0; i--){
+			if(amountOfMoney - i*CostOfALaunch >= 0 && !actionSuccessful){
+				amountOfClicksOnTheEarth+= i;
+				amountOfTrashBagsToBeSent += i*CapacityOfARocket;
+				amountOfMoney -= i*CostOfALaunch;
+				informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
+				actionSuccessful = true;
+			} else {
+				break;
+			}
+		}
+		if(!actionSuccessful){
+			SendWarning("You don't have enough money! Burn some trash!");
+		}
+	}
+	public void OnEarthIsClickedAutomaticly(int power){
+		bool actionSuccessful = false;
+		for(int i = power; i > 0; i--){
+			if(amountOfMoney - i*CostOfALaunch >= 0 && !actionSuccessful){
+				amountOfClicksOnTheEarth+= i;
+				amountOfTrashBagsToBeSent += i*CapacityOfARocket;
+				amountOfMoney -= i*CostOfALaunch;
+				informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
+			} else {
+				break;
+			}
+		}	
+	}
+	public void OnSunIsClickedAutomaticly(int power){
+		bool actionSuccessful = false;
+		for(int i = power; i > 0; i--){
+			if(amountOfTrashBagsToBeSent >= i && !actionSuccessful){
+				amountOfClicksOnTheSun+= i;
+				amountOfTrashBagsToBeSent -= i;
+				amountOfMoney += i*ProfitOfATrashBag;
+				informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
+				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
+			} else {
+				break;
+			}
 		}
 	}
 
@@ -121,7 +163,7 @@ public partial class UI : CanvasLayer
 		Timer WarningsTime = GetNode<Timer>("HBoxContainer/InfoContainer/Warning/WarningsTime");
 		WarningsTime.Start();
 		informationAboutWarnings.Visible = true;
-		informationAboutWarnings.Text = "You've already burnt all launched trash! Launch more!";
+		informationAboutWarnings.Text = Message;
 	}
 	private void OnWarningsTimeTimeout(){
 		informationAboutWarnings.Visible = false;
@@ -194,8 +236,8 @@ public partial class UI : CanvasLayer
 		if(wasBought){		
 			amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
 			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
-			EmitSignal(SignalName.reloadTools, Name);
 			ReloadVariables();
+			EmitSignal(SignalName.reloadTools, Name);
 		} else {
 			SendWarning("You don't have enough money!");
 		}
