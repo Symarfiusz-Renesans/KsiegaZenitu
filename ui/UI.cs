@@ -139,6 +139,7 @@ public partial class UI : CanvasLayer
 				amountOfMoney -= i*CostOfALaunch;
 				informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
 				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
+				actionSuccessful = true;
 			} else {
 				break;
 			}
@@ -153,6 +154,7 @@ public partial class UI : CanvasLayer
 				amountOfMoney += i*ProfitOfATrashBag;
 				informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
 				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
+				actionSuccessful = true;
 			} else {
 				break;
 			}

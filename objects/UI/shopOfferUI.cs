@@ -26,10 +26,11 @@ public partial class shopOfferUI : MarginContainer{
 	public override void _Ready(){
 		dataReader = (DataReader)GetNode("/root/DataReader");
 
+		ReloadVariables();
+
 		if(Type == "upgrade" && amountOfThings == 1){
 			Visible = false;
 		} else {
-			ReloadVariables();
 
 			NameLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Name");
 			CostLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Cost");
@@ -60,6 +61,7 @@ public partial class shopOfferUI : MarginContainer{
 				Visible = false;
 				dataReader.ChangeData(StorageName, 1.ToString(), dataReader.ChosenSlotId);
 				dataReader.ChangeData(UpgradedValue, Value.ToString(), dataReader.ChosenSlotId);
+				GD.Print(dataReader.Slot1DataStorage[UpgradedValue]);
 			}
 			dataReader.ChosenSlot = dataReader.ReadData(dataReader.ChosenSlotId);
 			ReloadVariables();
