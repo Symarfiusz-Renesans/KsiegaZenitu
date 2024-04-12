@@ -6,6 +6,7 @@ public partial class UI : CanvasLayer
 {
 	[Signal] public delegate void rotateCameraEventHandler(float angle = 0);
 	[Signal] public delegate void reloadToolsEventHandler(string Name);
+	//[Signal] public delegate void SunUpdateEventHandler();
 
 
 	DataReader dataReader;
@@ -213,14 +214,14 @@ public partial class UI : CanvasLayer
 		else return (Money/thousand).ToString("0.0");
 	}
 	public void ChangeVariables(){
-			dataReader.ChangeData("SunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("Money", amountOfMoney.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("AmountOfTrashBags", amountOfTrashBagsToBeSent.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("PowerOfManualClick", ManualClicksPower.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("PowerOfAutomaticalClick", AutomaticalClicksPower.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("CostOfALaunch", CostOfALaunch.ToString(), dataReader.ChosenSlotId);
-			dataReader.ChangeData("ProfitOfATrashBag", ProfitOfATrashBag.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("SunClicked", amountOfClicksOnTheSun.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("EarthClicked", amountOfClicksOnTheEarth.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("Money", amountOfMoney.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("AmountOfTrashBags", amountOfTrashBagsToBeSent.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("PowerOfManualClick", ManualClicksPower.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("PowerOfAutomaticalClick", AutomaticalClicksPower.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("CostOfALaunch", CostOfALaunch.ToString(), dataReader.ChosenSlotId);
+		dataReader.ChangeData("ProfitOfATrashBag", ProfitOfATrashBag.ToString(), dataReader.ChosenSlotId);
 	}
 	public void ReloadVariables(){
 		amountOfClicksOnTheSun = Int32.Parse(dataReader.ChosenSlot["SunClicked"]);
@@ -243,5 +244,8 @@ public partial class UI : CanvasLayer
 		} else {
 			SendWarning("You don't have enough money!");
 		}
+		// if(Name == "CoronaTrashBin"){
+		// 	EmitSignal(SignalName.SunUpdate);
+		// }
 	}
 }

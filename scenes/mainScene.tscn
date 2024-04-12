@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhtkyhggap53a"]
+[gd_scene load_steps=7 format=3 uid="uid://bhtkyhggap53a"]
 
 [ext_resource type="PackedScene" uid="uid://bkbuirjg8es75" path="res://objects/mainScenePlanet/Sun.tscn" id="1_afxws"]
 [ext_resource type="PackedScene" uid="uid://drxir4x8afpqd" path="res://ui/PauseMenuUI.tscn" id="1_dskb5"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scenes/Camera3D.cs" id="3_6m3on"]
 [ext_resource type="PackedScene" uid="uid://bi3amadsebx2x" path="res://ui/OdczytMyszki.tscn" id="4_37h7y"]
 [ext_resource type="PackedScene" uid="uid://d3qnhn31nxyvx" path="res://Tilesets/space.tscn" id="5_c2sve"]
-[ext_resource type="PackedScene" uid="uid://xcu6mlall7ej" path="res://objects/tools/CoronaTrashBin.tscn" id="6_l20fs"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -39,9 +38,7 @@ sky_mode = 1
 
 [node name="Space" parent="." instance=ExtResource("5_c2sve")]
 
-[node name="CoronaTrashBin" parent="." instance=ExtResource("6_l20fs")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -50)
-
+[connection signal="SunUpdate" from="MainUI" to="Sun" method="OnUiSunUpdate"]
 [connection signal="rotateCamera" from="MainUI" to="Camera3D" method="OnRotateCamera"]
 [connection signal="SaveProgress" from="PauseMenu" to="MainUI" method="OnPauseMenuSaveProgress"]
 [connection signal="TheSunWasClicked" from="Sun" to="MainUI" method="OnTheSunWasClicked"]

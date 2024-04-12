@@ -25,9 +25,12 @@ public partial class Tool : Node
 	}
 
 	private void ReloadVariables(){
+		dataReader.ChosenSlot =dataReader.ReadData(dataReader.ChosenSlotId);
+
 		amountOfTools = Int32.Parse(dataReader.ChosenSlot[ToolsName]);
 		speedOfTools = Int32.Parse(dataReader.ChosenSlot[ToolsSpeedName]);
 		powerOfTools = Int32.Parse(dataReader.ChosenSlot[ToolsPowerName]);
+		GD.Print(powerOfTools);
 		powerOfAutomaticalClick = Int32.Parse(dataReader.ChosenSlot["PowerOfAutomaticalClick"]);
 	}
 
