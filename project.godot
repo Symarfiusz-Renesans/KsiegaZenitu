@@ -22,7 +22,9 @@ AudioManager="*res://autoloaders/AudioManager.tscn"
 
 [display]
 
+window/size/resizable=false
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
 [dotnet]

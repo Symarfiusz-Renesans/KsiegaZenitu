@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public partial class shopOfferUI : MarginContainer{
-	[Signal] public delegate void OnThingBoughtEventHandler(bool wasBought);
+	[Signal] public delegate void OnThingBoughtEventHandler(bool wasBought, string name);
 
 	[Export] private string ProductsName;
 	[Export] private string StorageName;
@@ -26,11 +26,11 @@ public partial class shopOfferUI : MarginContainer{
 	public override void _Ready(){
 		dataReader = (DataReader)GetNode("/root/DataReader");
 
-		ReloadVariables(); 
-
 		if(Type == "upgrade" && amountOfThings == 1){
 			Visible = false;
 		} else {
+			ReloadVariables();
+
 			NameLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Name");
 			CostLabel = GetNode<Label>("HBoxContainer/VBoxContainer/HBoxContainer/Cost");
 			ActionLabel = GetNode<RichTextLabel>("HBoxContainer/VBoxContainer/Action");
@@ -49,6 +49,7 @@ public partial class shopOfferUI : MarginContainer{
 
 	public void OnPessed(){
 		if(Money >= costOfThing){
+			GD.Print(Money-costOfThing);
 			dataReader.ChangeData("Money", (Money-costOfThing).ToString(), dataReader.ChosenSlotId);
 			if(Type == "tool"){
 				dataReader.ChangeData(StorageName, (amountOfThings + 1).ToString(), dataReader.ChosenSlotId);
@@ -62,9 +63,9 @@ public partial class shopOfferUI : MarginContainer{
 			}
 			dataReader.ChosenSlot = dataReader.ReadData(dataReader.ChosenSlotId);
 			ReloadVariables();
-			EmitSignal(SignalName.OnThingBought, true);
+			EmitSignal(SignalName.OnThingBought, true, StorageName);
 		} else {
-			EmitSignal(SignalName.OnThingBought, false);
+			EmitSignal(SignalName.OnThingBought, false, StorageName);
 		}
 	}
 
@@ -80,10 +81,10 @@ public partial class shopOfferUI : MarginContainer{
 		const double billion = million*thousand;
 		const double trillion = billion*thousand;
 
-		if(Money/trillion >= 1) return (Money/trillion).ToString("0.00")+"T";
-		else if (Money/billion >= 1) return (Money/billion).ToString("0.00")+"B";
-		else if (Money/million >= 1) return (Money/million).ToString("0.00")+"M";
-		else if(Money/thousand >= 1) return (Money/thousand).ToString("0.00")+"K";
-		else return (Money/thousand).ToString("0.0");
+		if(Money/trillion >= 1) return (Money%trillion == 0) ? (Money/trillion).ToString()+"T" : (Money/trillion).ToString("0.00")+"T";
+		else if (Money/billion >= 1) return (Money%billion == 0) ? (Money/billion).ToString()+"B" : (Money/billion).ToString("0.00")+"B";
+		else if (Money/million >= 1) return (Money%million == 0) ? (Money/million).ToString()+"M" : (Money/million).ToString("0.00")+"M";
+		else if(Money/thousand >= 1) return (Money%thousand == 0) ? (Money/thousand).ToString()+"K" : (Money/thousand).ToString("0.00")+"K";
+		else return (Money).ToString();
 	}
 }

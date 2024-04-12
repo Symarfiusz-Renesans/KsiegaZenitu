@@ -5,6 +5,8 @@ using System.ComponentModel;
 public partial class UI : CanvasLayer
 {
 	[Signal] public delegate void rotateCameraEventHandler(float angle = 0);
+	[Signal] public delegate void reloadToolsEventHandler(string Name);
+
 
 	DataReader dataReader;
 	//Loaded Nodes
@@ -92,7 +94,7 @@ public partial class UI : CanvasLayer
 	}
 
 	private void OnTheSunWasClicked(){
-		if(amountOfTrashBagsToBeSent != 0){
+		if(amountOfTrashBagsToBeSent >= 0){
 			amountOfClicksOnTheSun+= ManualClicksPower;
 			amountOfTrashBagsToBeSent -= ManualClicksPower;
 			amountOfMoney += ManualClicksPower*ProfitOfATrashBag;
@@ -104,7 +106,7 @@ public partial class UI : CanvasLayer
 	}
 
 	private void OnTheEarthWasClicked(){
-		if(amountOfMoney != 0){
+		if(amountOfMoney - ManualClicksPower*CostOfALaunch >= 0){
 			amountOfClicksOnTheEarth+= ManualClicksPower;
 			amountOfTrashBagsToBeSent += ManualClicksPower*CapacityOfARocket;
 			amountOfMoney -= ManualClicksPower*CostOfALaunch;
@@ -160,10 +162,10 @@ public partial class UI : CanvasLayer
 		const double billion = million*thousand;
 		const double trillion = billion*thousand;
 
-		if(Money/trillion >= 1) return (Money/trillion).ToString("0.00")+"T";
-		else if (Money/billion >= 1) return (Money/billion).ToString("0.00")+"B";
-		else if (Money/million >= 1) return (Money/million).ToString("0.00")+"M";
-		else if(Money/thousand >= 1) return (Money/thousand).ToString("0.00")+"K";
+		if(Money/trillion >= 1) return (Money%trillion == 0) ? (Money/trillion).ToString()+"T" : (Money/trillion).ToString("0.00")+"T";
+		else if (Money/billion >= 1) return (Money%billion == 0) ? (Money/billion).ToString()+"B" : (Money/billion).ToString("0.00")+"B";
+		else if (Money/million >= 1) return (Money%million == 0) ? (Money/million).ToString()+"M" : (Money/million).ToString("0.00")+"M";
+		else if(Money/thousand >= 1) return (Money%thousand == 0) ? (Money/thousand).ToString()+"K" : (Money/thousand).ToString("0.00")+"K";
 		else return (Money/thousand).ToString("0.0");
 	}
 	public void ChangeVariables(){
@@ -188,11 +190,11 @@ public partial class UI : CanvasLayer
 		ProfitOfATrashBag = Int32.Parse(dataReader.ChosenSlot["ProfitOfATrashBag"]);
 		CapacityOfARocket = Int32.Parse(dataReader.ChosenSlot["CapacityOfARocket"]);
 	}
-	public void OnThingBought(bool wasBought){
+	public void OnThingBought(bool wasBought, string Name){
 		if(wasBought){		
 			amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
 			informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
-			GD.Print(Int32.Parse(dataReader.ChosenSlot["PowerOfManualClick"]));
+			EmitSignal(SignalName.reloadTools, Name);
 			ReloadVariables();
 		} else {
 			SendWarning("You don't have enough money!");

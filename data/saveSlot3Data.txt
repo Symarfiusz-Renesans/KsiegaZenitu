@@ -2,10 +2,11 @@ SunClicked: 0
 EarthClicked: 0
 AmountOfTrashBags: 0
 Money: 1000
-CostOfALaunch: 100
+CostOfALaunch: 500
 ProfitOfATrashBag: 250
 CapacityOfARocket: 10
-PowerOfClick: 1
+PowerOfManualClick: 1
+PowerOfAutomaticalClick: 1
 Jeff: 0
 CostOfJ: 500
 SpeedOfJ: 10
@@ -21,8 +22,8 @@ CostOfCRP: 10000
 CrunchCulture: 0
 CostOfCC: 25000
 CoronaBurstThrowing: 0
-CostOfCBT: 50000
+CostOfCBT: 100000
 MoreCapaciousRockets: 0
-CostOfMCR: 100000
+CostOfMCR: 500000
 DoubleClickCulture: 0
 CostOfDCC: 1000000
