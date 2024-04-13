@@ -38,7 +38,6 @@ sky_mode = 1
 
 [node name="Space" parent="." instance=ExtResource("5_c2sve")]
 
-[connection signal="SunUpdate" from="MainUI" to="Sun" method="OnUiSunUpdate"]
 [connection signal="rotateCamera" from="MainUI" to="Camera3D" method="OnRotateCamera"]
 [connection signal="SaveProgress" from="PauseMenu" to="MainUI" method="OnPauseMenuSaveProgress"]
 [connection signal="TheSunWasClicked" from="Sun" to="MainUI" method="OnTheSunWasClicked"]
