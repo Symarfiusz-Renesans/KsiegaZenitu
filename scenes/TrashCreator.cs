@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class trashCreator : Node
+public partial class TrashCreator : Node
 {
 	[Export] private PackedScene trash;
 	[Export] private PackedScene[] allPossibleTrash;
