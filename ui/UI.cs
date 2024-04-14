@@ -17,8 +17,6 @@ public partial class UI : CanvasLayer
 	Label informationAboutClicks;
 	Label informationAboutMoney;
 	Label informationAboutWarnings;
-
-	Timer AutomaticSave;
 	//Loaded variables
 	private int amountOfClicksOnTheSun = 0;
 	private int amountOfClicksOnTheEarth = 0;
@@ -39,8 +37,6 @@ public partial class UI : CanvasLayer
 
 		GameplayInfo = GetNode<MarginContainer>("HBoxContainer/InfoContainer/GameplayInfo");
 		Shop = GetNode<MarginContainer>("HBoxContainer/InfoContainer/Shop");
-
-		AutomaticSave = GetNode<Timer>("AutomaticSave");
 		
 		ReloadVariables();
 
@@ -181,20 +177,15 @@ public partial class UI : CanvasLayer
 		EmitSignal(SignalName.rotateCamera, 90);
 	}
 
-	private async void OnCamerasAngleChanged(float angle){
+	private void OnCamerasAngleChanged(float angle){
 		this.angle = angle;	
 	}
 
 	public override void _Notification(int what){
     	if (what == NotificationWMCloseRequest){
-			OnPauseMenuSaveProgress();
+			ChangeVariables();
         	GetTree().Quit();
 		}
-	}
-
-	public void OnAutomaticSaveTimeout(){
-		OnPauseMenuSaveProgress();
-		GD.Print("zapisano!");
 	}
 
 	public void OnPauseMenuSaveProgress(){
@@ -228,7 +219,6 @@ public partial class UI : CanvasLayer
 		amountOfClicksOnTheEarth = Int32.Parse(dataReader.ChosenSlot["EarthClicked"]);
 		amountOfMoney = long.Parse(dataReader.ChosenSlot["Money"]);
 		amountOfTrashBagsToBeSent = Int32.Parse(dataReader.ChosenSlot["AmountOfTrashBags"]);
-		GD.Print(Int32.Parse(dataReader.ChosenSlot["PowerOfManualClick"]));
 		ManualClicksPower = Int32.Parse(dataReader.ChosenSlot["PowerOfManualClick"]);
 		AutomaticalClicksPower = Int32.Parse(dataReader.ChosenSlot["PowerOfAutomaticalClick"]);
 		CostOfALaunch = Int32.Parse(dataReader.ChosenSlot["CostOfALaunch"]);
@@ -247,5 +237,8 @@ public partial class UI : CanvasLayer
 		// if(Name == "CoronaTrashBin"){
 		// 	EmitSignal(SignalName.SunUpdate);
 		// }
+	}
+	public void OnBeforeThingIsBought(){
+		ChangeVariables();
 	}
 }

@@ -3,7 +3,9 @@ using System;
 
 public partial class shopOfferUI : MarginContainer{
 	[Signal] public delegate void OnThingBoughtEventHandler(bool wasBought, string name);
+	[Signal] public delegate void BeforeThingIsBoughtEventHandler();
 
+	[Export] private string WhatUpgrades;
 	[Export] private string ProductsName;
 	[Export] private string StorageName;
 	[Export] private string StorageCostName;
@@ -49,6 +51,9 @@ public partial class shopOfferUI : MarginContainer{
 	}
 
 	public void OnPessed(){
+		EmitSignal(SignalName.BeforeThingIsBought);
+		ReloadVariables();
+		GD.Print(Money);
 		if(Money >= costOfThing){
 			GD.Print(Money-costOfThing);
 			dataReader.ChangeData("Money", (Money-costOfThing).ToString(), dataReader.ChosenSlotId);
@@ -61,19 +66,20 @@ public partial class shopOfferUI : MarginContainer{
 				Visible = false;
 				dataReader.ChangeData(StorageName, 1.ToString(), dataReader.ChosenSlotId);
 				dataReader.ChangeData(UpgradedValue, Value.ToString(), dataReader.ChosenSlotId);
-				GD.Print(dataReader.Slot1DataStorage[UpgradedValue]);
 			}
 			dataReader.ChosenSlot = dataReader.ReadData(dataReader.ChosenSlotId);
 			ReloadVariables();
-			EmitSignal(SignalName.OnThingBought, true, StorageName);
+			EmitSignal(SignalName.OnThingBought, true, WhatUpgrades);
 		} else {
-			EmitSignal(SignalName.OnThingBought, false, StorageName);
+			EmitSignal(SignalName.OnThingBought, false, WhatUpgrades);
 		}
 	}
 
 	public void ReloadVariables(){
 		costOfThing = Int32.Parse(dataReader.ChosenSlot[StorageCostName]);
 		amountOfThings = Int32.Parse(dataReader.ChosenSlot[StorageName]);
+		GD.Print(dataReader.ChosenSlot["Money"]);
+		GD.Print(dataReader.Slot1DataStorage["Money"]);
 		Money = long.Parse(dataReader.ChosenSlot["Money"]);
 	}
 

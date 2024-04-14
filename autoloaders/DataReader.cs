@@ -80,7 +80,6 @@ public partial class DataReader : Node{
 				text += entry.Key + ": " + entry.Value+"\n";
 			}
 		}
-
 		ConnectFile(toWhichFile, FileAccess.ModeFlags.Write);
 		SaveData(text);
 		ChosenSlot = ReadData(toWhichFile);

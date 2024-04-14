@@ -111,6 +111,7 @@ horizontal_alignment = 1
 
 [node name="Jeff" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "Jeff"
 StorageName = "Jeff"
 StorageCostName = "CostOfJ"
 Type = "tool"
@@ -119,6 +120,7 @@ Image = ExtResource("5_cpw2a")
 
 [node name="CoronaTrashBin" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "CoronaTrashBin"
 ProductsName = "Corona Trash Bin"
 StorageName = "CoronaTrashBin"
 StorageCostName = "CostOfCTB"
@@ -139,6 +141,7 @@ horizontal_alignment = 1
 
 [node name="DoubleClickButton" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "You"
 ProductsName = "Double Click Button"
 StorageName = "DoubleClickButton"
 StorageCostName = "CostOfDBC"
@@ -150,6 +153,7 @@ Image = ExtResource("5_cpw2a")
 
 [node name="CheaperRocketProduction" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "Rocket"
 ProductsName = "Cheaper Rocket Production"
 StorageName = "CheaperRocketProduction"
 StorageCostName = "CostOfCRP"
@@ -161,6 +165,7 @@ Image = ExtResource("5_cpw2a")
 
 [node name="CrunchCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "Jeff"
 ProductsName = "Crunch Culture"
 StorageName = "CrunchCulture"
 StorageCostName = "CostOfCC"
@@ -172,6 +177,7 @@ Image = ExtResource("5_cpw2a")
 
 [node name="CoronaBurstThrowing" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "CoronaTrashBin"
 ProductsName = "Corona Burst Throwing"
 StorageName = "CoronaBurstThrowing"
 StorageCostName = "CostOfCBT"
@@ -183,6 +189,7 @@ Image = ExtResource("5_cpw2a")
 
 [node name="MoreCapaciousRockets" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "Rocket"
 ProductsName = "More Capacious Rockets"
 StorageName = "MoreCapaciousRockets"
 StorageCostName = "CostOfMCR"
@@ -194,6 +201,7 @@ Image = ExtResource("5_cpw2a")
 
 [node name="DoubleClickCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
+WhatUpgrades = "All"
 ProductsName = "Double Click Culture"
 StorageName = "DoubleClickCulture"
 StorageCostName = "CostOfDCC"
@@ -241,10 +249,6 @@ layout_mode = 2
 texture_normal = ExtResource("3_am1m3")
 stretch_mode = 6
 
-[node name="AutomaticSave" type="Timer" parent="."]
-wait_time = 60.0
-autostart = true
-
 [node name="CoronaTrashBins" parent="." instance=ExtResource("9_ex5fp")]
 ToolsName = "CoronaTrashBin"
 ToolsSpeedName = "SpeedOfCTB"
@@ -261,16 +265,23 @@ ToolsLocation = "Earth"
 [connection signal="reloadTools" from="." to="Jeffs" method="OnReloadTools"]
 [connection signal="pressed" from="HBoxContainer/ToTheLeft" to="." method="OnToTheLeftInputEvent"]
 [connection signal="timeout" from="HBoxContainer/InfoContainer/Warning/WarningsTime" to="." method="OnWarningsTimeTimeout"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools/Jeff" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools/Jeff" to="." method="OnThingBought"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools/CoronaTrashBin" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Tools/CoronaTrashBin" to="." method="OnThingBought"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/DoubleClickButton" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/DoubleClickButton" to="." method="OnThingBought"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CheaperRocketProduction" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CheaperRocketProduction" to="." method="OnThingBought"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CrunchCulture" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CrunchCulture" to="." method="OnThingBought"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CoronaBurstThrowing" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/CoronaBurstThrowing" to="." method="OnThingBought"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/MoreCapaciousRockets" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/MoreCapaciousRockets" to="." method="OnThingBought"]
+[connection signal="BeforeThingIsBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/DoubleClickCulture" to="." method="OnBeforeThingIsBought"]
 [connection signal="OnThingBought" from="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades/DoubleClickCulture" to="." method="OnThingBought"]
 [connection signal="pressed" from="HBoxContainer/ToTheRight" to="." method="OnToTheRightInputEvent"]
-[connection signal="timeout" from="AutomaticSave" to="." method="OnAutomaticSaveTimeout"]
 [connection signal="EarthIsClickedAutomaticly" from="CoronaTrashBins" to="." method="OnEarthIsClickedAutomaticly"]
 [connection signal="SunIsClickedAutomaticly" from="CoronaTrashBins" to="." method="OnSunIsClickedAutomaticly"]
 [connection signal="EarthIsClickedAutomaticly" from="Jeffs" to="." method="OnEarthIsClickedAutomaticly"]
