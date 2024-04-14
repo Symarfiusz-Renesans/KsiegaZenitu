@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bi3amadsebx2x"]
+[gd_scene load_steps=13 format=3 uid="uid://bi3amadsebx2x"]
 
 [ext_resource type="Script" path="res://ui/UI.cs" id="1_vbkl0"]
 [ext_resource type="Texture2D" uid="uid://gepo0emhfxe4" path="res://2dSprites/RotationButtonLeft.png" id="2_aarqp"]
@@ -8,7 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dkaxg6p86vhcc" path="res://objects/UI/shopOffers.tscn" id="4_b5f8p"]
 [ext_resource type="Texture2D" uid="uid://4cntofi7de1k" path="res://2dSprites/Jeff.png" id="5_cpw2a"]
 [ext_resource type="Texture2D" uid="uid://tlmnf5acthub" path="res://2dSprites/CoronaTrashBinPhoto.png" id="6_sqtm3"]
+[ext_resource type="Texture2D" uid="uid://llku1347fl8p" path="res://2dSprites/mouse_double_click.png" id="7_u62x3"]
+[ext_resource type="Texture2D" uid="uid://bs4ov5jqp43fa" path="res://2dSprites/rocket.png" id="8_4dt3w"]
 [ext_resource type="PackedScene" uid="uid://cqdtkosumsrif" path="res://objects/tools/Tool.tscn" id="9_ex5fp"]
+[ext_resource type="Texture2D" uid="uid://c03bptqcv6s05" path="res://2dSprites/mqdefault.jpg" id="9_v8bp1"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_vbkl0")
@@ -149,7 +152,7 @@ Type = "upgrade"
 Action = "Every manual click on either Sun or Earth doubles effect."
 Value = 2
 UpgradedValue = "PowerOfManualClick"
-Image = ExtResource("5_cpw2a")
+Image = ExtResource("7_u62x3")
 
 [node name="CheaperRocketProduction" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
@@ -161,7 +164,7 @@ Type = "upgrade"
 Action = "Rocket will cost 40% less."
 Value = 300
 UpgradedValue = "CostOfALaunch"
-Image = ExtResource("5_cpw2a")
+Image = ExtResource("8_4dt3w")
 
 [node name="CrunchCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
@@ -173,7 +176,7 @@ Type = "upgrade"
 Action = "Jeffs will send out rockets every 7.5s."
 Value = 7
 UpgradedValue = "SpeedOfJ"
-Image = ExtResource("5_cpw2a")
+Image = ExtResource("9_v8bp1")
 
 [node name="CoronaBurstThrowing" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
@@ -185,7 +188,7 @@ Type = "upgrade"
 Action = "Corona Trash Bins will send 3 trashbags every 10s."
 Value = 3
 UpgradedValue = "PowerOfCTB"
-Image = ExtResource("5_cpw2a")
+Image = ExtResource("6_sqtm3")
 
 [node name="MoreCapaciousRockets" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
@@ -197,7 +200,7 @@ Type = "upgrade"
 Action = "Rockets will be able to contain 50 trashbags."
 Value = 50
 UpgradedValue = "CapacityOfARocket"
-Image = ExtResource("5_cpw2a")
+Image = ExtResource("8_4dt3w")
 
 [node name="DoubleClickCulture" parent="HBoxContainer/InfoContainer/Shop/ScrollContainer/HBoxContainer/Upgrades" instance=ExtResource("4_b5f8p")]
 layout_mode = 2
@@ -209,7 +212,7 @@ Type = "upgrade"
 Action = "Every automatical click on either Sun or Earth doubles effect."
 Value = 2
 UpgradedValue = "PowerOfAutomaticalClick"
-Image = ExtResource("5_cpw2a")
+Image = ExtResource("7_u62x3")
 
 [node name="GameplayInfo" type="MarginContainer" parent="HBoxContainer/InfoContainer"]
 visible = false
