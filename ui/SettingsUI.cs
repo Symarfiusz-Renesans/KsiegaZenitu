@@ -29,6 +29,10 @@ public partial class SettingsUI : MarginContainer{
 		MuASlider.Value = float.Parse(dataReader.GeneralDataStorage["musicAudio"]);
 		VASlider.Value = float.Parse(dataReader.GeneralDataStorage["vfxAudio"]);
 
+		OnMuASliderValueChanged((float)MuASlider.Value);
+		OnMaASliderValueChanged((float)MaASlider.Value);
+		OnVASliderValueChanged((float)VASlider.Value);
+
 		switch (dataReader.GeneralDataStorage["defaultLanguage"]){
 			case "pl":
 				ChosenLanguage.Text = AvailableLanguage.Polski.ToString();
