@@ -2,11 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bi0j55jf06q5q" path="res://ui/MainMenuUI.tscn" id="1_toagj"]
 [ext_resource type="PackedScene" uid="uid://dsko2e7n6xaxh" path="res://objects/UI/UISun.tscn" id="2_gd4w8"]
-<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://scenes/TrashCreator.cs" id="3_ai7x6"]
-=======
-[ext_resource type="Script" path="res://scenes/TrashCreator.cs" id="3_jrwo5"]
->>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://cbsqna58i2mmp" path="res://objects/UI/UITrashLogic.tscn" id="4_f3uf3"]
 [ext_resource type="PackedScene" uid="uid://07wifjnr64te" path="res://objects/trash/trashBag1.tscn" id="5_p56mk"]
 [ext_resource type="PackedScene" uid="uid://d3qnhn31nxyvx" path="res://Tilesets/space.tscn" id="6_nih8c"]
