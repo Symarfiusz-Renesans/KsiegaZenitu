@@ -30,21 +30,30 @@ public partial class DataReader : Node{
 		Dictionary<string, string> dataStorage = new Dictionary<string, string>();
 			
 		ConnectFile(fileType, FileAccess.ModeFlags.Read);
-		
-		while(!dataFile.EofReached()){
-		string line = dataFile.GetLine();
-		string[] divide = line.Split(": ");
+		GD.Print(dataFile);
 
-		if(divide.Length != 2) break;
+		while(!dataFile.EofReached()){
+			string line = dataFile.GetLine();
+			string[] divide = line.Split(": ");
+
+			if(divide.Length != 2) break;
 			dataStorage.Add(divide[0], divide[1]);
 		}
+		dataFile.Close();
 
 		return dataStorage;
 	}
 
-	public void SaveData(string text){
-		dataFile.StoreString(text);
-		dataFile.Close();
+	public bool SaveData(string text){
+		try{	
+			dataFile.StoreString(text);
+			dataFile.Close();
+			return true;
+		} catch (NullReferenceException){
+			GD.Print("przeszło");
+			ConnectFile(ChosenSlotId, FileAccess.ModeFlags.Write);
+			return false;
+		}
 	}
 
 	public void ChangeData(string inWhat, string toWhat, FileTypes toWhichFile){
@@ -82,8 +91,7 @@ public partial class DataReader : Node{
 			}
 		}
 		ConnectFile(toWhichFile, FileAccess.ModeFlags.Write);
-		SaveData(text);
-		ChosenSlot = ReadData(toWhichFile);
+		if(SaveData(text)) ChosenSlot = ReadData(toWhichFile);
 	}
 
 	void ConnectFile(FileTypes toWhichFile, FileAccess.ModeFlags action){

@@ -13,7 +13,10 @@
             "args": [
                 "--path",
                 "${workspaceRoot}"
-            ]
+            ],
+            "logging": {
+                "moduleLoad": false
+            }
         },
         {
             "name": "Launch mainScene",
