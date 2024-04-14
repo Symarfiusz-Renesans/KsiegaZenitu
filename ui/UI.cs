@@ -232,7 +232,8 @@ public partial class UI : CanvasLayer
 			ReloadVariables();
 			EmitSignal(SignalName.reloadTools, Name);
 		} else {
-			SendWarning("You don't have enough money!");
+			if (Name == "noMoney") SendWarning("You don't have enough money!");
+			else SendWarning("You won't have enough money for another launch!");
 		}
 		// if(Name == "CoronaTrashBin"){
 		// 	EmitSignal(SignalName.SunUpdate);

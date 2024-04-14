@@ -17,7 +17,9 @@ public partial class shopOfferUI : MarginContainer{
 
 	DataReader dataReader;
 	int amountOfThings = 0;
+	int amountOfTrash = 0;
 	int costOfThing = 0;
+	int costOfLaunch = 0;
 	long Money = 0;
 	private Label NameLabel;
 	private Label CostLabel;
@@ -54,7 +56,7 @@ public partial class shopOfferUI : MarginContainer{
 		EmitSignal(SignalName.BeforeThingIsBought);
 		ReloadVariables();
 		GD.Print(Money);
-		if(Money >= costOfThing){
+		if((Money >= costOfThing && amountOfTrash > 0)||(Money >= costOfThing+costOfLaunch && amountOfTrash == 0)){
 			GD.Print(Money-costOfThing);
 			dataReader.ChangeData("Money", (Money-costOfThing).ToString(), dataReader.ChosenSlotId);
 			if(Type == "tool"){
@@ -71,16 +73,16 @@ public partial class shopOfferUI : MarginContainer{
 			ReloadVariables();
 			EmitSignal(SignalName.OnThingBought, true, WhatUpgrades);
 		} else {
-			EmitSignal(SignalName.OnThingBought, false, WhatUpgrades);
+			EmitSignal(SignalName.OnThingBought, false, ( amountOfTrash > 0)? "noMoney" :"noTrash");
 		}
 	}
 
 	public void ReloadVariables(){
 		costOfThing = Int32.Parse(dataReader.ChosenSlot[StorageCostName]);
 		amountOfThings = Int32.Parse(dataReader.ChosenSlot[StorageName]);
-		GD.Print(dataReader.ChosenSlot["Money"]);
-		GD.Print(dataReader.Slot1DataStorage["Money"]);
+		costOfLaunch = Int32.Parse(dataReader.ChosenSlot["CostOfALaunch"]);
 		Money = long.Parse(dataReader.ChosenSlot["Money"]);
+		amountOfTrash = Int32.Parse(dataReader.ChosenSlot["AmountOfTrashBags"]);
 	}
 
 	public string MoneySymbols(long Money){

@@ -28,16 +28,17 @@ public partial class DataReader : Node{
 
 	public Dictionary<string, string> ReadData(FileTypes fileType){
 		Dictionary<string, string> dataStorage = new Dictionary<string, string>();
+			
 		ConnectFile(fileType, FileAccess.ModeFlags.Read);
 		
 		while(!dataFile.EofReached()){
-			string line = dataFile.GetLine();
-			string[] divide = line.Split(": ");
+		string line = dataFile.GetLine();
+		string[] divide = line.Split(": ");
 
-			if(divide.Length != 2) break;
-
+		if(divide.Length != 2) break;
 			dataStorage.Add(divide[0], divide[1]);
 		}
+
 		return dataStorage;
 	}
 
