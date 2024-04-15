@@ -25,8 +25,8 @@ public partial class Camera3D : Godot.Camera3D{
 	}
 
 	private float whatAngle(){
-		GD.Print(Math.Abs(rotation % 360));
-		return Math.Abs(rotation % 360);
+		GD.Print((rotation >= 0)?rotation % 360: 360 + rotation % 360);
+		return (rotation >= 0)?rotation % 360: 360 + rotation % 360;
 	}
 
 }
