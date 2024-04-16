@@ -49,44 +49,29 @@ public partial class UI : CanvasLayer
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta){
+		GameplayInfo.Visible = false;
+		Shop.Visible = false;
+		informationAboutClicks.Visible = false;
+
 		switch(angle){
 			case 0:{
-				GameplayInfo.Visible = false;
-				Shop.Visible = false;
 				informationAboutClicks.Visible = true;
 				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
 				break;
 			}
 			case 90:{
-				GameplayInfo.Visible = true;
-				Shop.Visible = false;
-				informationAboutClicks.Visible = false;
+				Shop.Visible = true;
 				break;
 			}
 			case 180:{
-				GameplayInfo.Visible = false;
-				Shop.Visible = false;
 				informationAboutClicks.Visible = true;
 				informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheEarth;
 				break;
 			}
 			case 270:{
-				Shop.Visible = true;
-				GameplayInfo.Visible = false;
-				informationAboutClicks.Visible = false;
+				GameplayInfo.Visible = true;
 				break;
 			}
-		}
-
-		if(angle != 90){
-			GameplayInfo.Visible = false;
-		} 
-		if(angle != 270){
-			Shop.Visible = false;
-		}
-		if(angle == 0 || angle == 180){
-			GameplayInfo.Visible = false;
-			Shop.Visible = false;
 		}
 	}
 
