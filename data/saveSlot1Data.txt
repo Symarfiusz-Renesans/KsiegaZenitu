@@ -1,7 +1,7 @@
-SunClicked: 0
-EarthClicked: 0
+SunClicked: 120
+EarthClicked: 12
 AmountOfTrashBags: 0
-Money: 1000
+Money: 25000
 CostOfALaunch: 500
 ProfitOfATrashBag: 250
 CapacityOfARocket: 10
