@@ -41,9 +41,9 @@ public partial class UI : CanvasLayer
 		ReloadVariables();
 
 		informationAboutClicks = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Clicks");
-		informationAboutClicks.Text = Tr("CLICKS")+": "+amountOfClicksOnTheSun;
+		informationAboutClicks.Text = "Clicks: "+amountOfClicksOnTheSun;
 		informationAboutMoney = this.GetNode<Label>("HBoxContainer/InfoContainer/DataInfo/Money");
-		informationAboutMoney.Text = Tr("MONEY")+": "+MoneySymbols(amountOfMoney);
+		informationAboutMoney.Text = "Money: "+MoneySymbols(amountOfMoney);
 		informationAboutWarnings = GetNode<Label>("HBoxContainer/InfoContainer/Warning");
 	}
 
